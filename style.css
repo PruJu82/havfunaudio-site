@@ -85,6 +85,54 @@ figure { margin: 0; }
 figure img { border-radius: var(--rayon); border: 1px solid var(--bord); }
 figcaption { color: var(--doux); font-size: 0.9rem; margin-top: 10px; text-align: center; }
 
+/* Les diaporamas : en haut il defile seul, en bas on le mene a la main (fleches, miniatures) */
+.carrousel { width: 100%; min-width: 0; }
+.carrousel .cadre { position: relative; aspect-ratio: 940 / 668; }
+.carrousel .vue { position: absolute; inset: 0; opacity: 0; transition: opacity 0.6s; pointer-events: none; }
+.carrousel .vue.active { opacity: 1; pointer-events: auto; }
+.carrousel .vue img { width: 100%; border-radius: var(--rayon); border: 1px solid var(--bord); }
+.carrousel.auto .vue img { box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6), 0 0 60px rgba(0, 229, 255, 0.08); }
+.carrousel .vue figcaption { margin-top: 8px; }
+.fleche {
+  position: absolute; top: calc(50% - 36px); width: 40px; height: 40px; border-radius: 50%;
+  border: 1px solid var(--bord); background: rgba(10, 17, 22, 0.75); color: var(--accent);
+  font-size: 1.6rem; line-height: 1; cursor: pointer;
+}
+.fleche:hover { background: rgba(0, 229, 255, 0.15); }
+.prec { left: 10px; }
+.suiv { right: 10px; }
+.compteur {
+  position: absolute; top: 10px; right: 12px; padding: 2px 10px; border-radius: 999px;
+  background: rgba(10, 17, 22, 0.75); color: var(--doux); font-size: 0.8rem;
+}
+.miniatures { display: flex; gap: 8px; overflow-x: auto; padding: 12px 0 6px; scrollbar-color: var(--bord) transparent; }
+.miniatures button {
+  flex: 0 0 120px; width: 120px; min-width: 0; padding: 0; border: 1px solid transparent; border-radius: 6px; background: none;
+  color: var(--doux); font-size: 0.72rem; cursor: pointer; opacity: 0.6;
+}
+.miniatures button.active, .miniatures button:hover { opacity: 1; border-color: var(--accent); color: var(--texte); }
+.miniatures img { width: 100%; border-radius: 5px 5px 0 0; }
+.captures { grid-template-columns: minmax(0, 1fr); }   /* la bande des miniatures ne doit pas elargir la page */
+.doux { color: var(--doux); margin-top: -0.4em; }
+
+/* Le lecteur : un seul audio, la liste des demos dessous, a hauteur fixe */
+.lecteur { background: var(--surface); border: 1px solid var(--bord); border-radius: var(--rayon); overflow: hidden; }
+.en-cours {
+  display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+  padding: 14px 18px; border-bottom: 1px solid var(--bord);
+}
+.titre-cours { color: #fff; font-weight: 600; }
+.en-cours audio { width: min(420px, 100%); }
+.liste { list-style: none; margin: 0; padding: 8px 0; columns: 3 220px; column-gap: 0; }   /* tout se voit, sans defiler */
+.liste li { break-inside: avoid; }
+.liste button {
+  display: flex; gap: 14px; width: 100%; padding: 7px 18px; border: 0; background: none;
+  color: var(--doux); font: inherit; font-size: 0.95rem; text-align: left; cursor: pointer;
+}
+.liste button:hover { background: rgba(0, 229, 255, 0.06); color: var(--texte); }
+.liste button.active { color: var(--accent); }
+.num { opacity: 0.6; font-variant-numeric: tabular-nums; }
+
 .demos { display: grid; gap: 12px; }
 .demo {
   display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;

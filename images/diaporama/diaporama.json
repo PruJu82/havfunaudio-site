@@ -1,0 +1,240 @@
+[
+ {
+  "image": "images/diaporama/engine.webp",
+  "onglet": "Engine",
+  "preset": "DeFaUlT",
+  "dossier": "Factory",
+  "scene": true
+ },
+ {
+  "image": "images/diaporama/attack.webp",
+  "onglet": "Attack",
+  "preset": "Zinc Harbor",
+  "dossier": "Pad",
+  "scene": true
+ },
+ {
+  "image": "images/diaporama/pm.webp",
+  "onglet": "PM",
+  "preset": "DeFaUlT",
+  "dossier": "Factory",
+  "scene": true
+ },
+ {
+  "image": "images/diaporama/diss.webp",
+  "onglet": "Diss",
+  "preset": "DeFaUlT",
+  "dossier": "Factory",
+  "scene": true
+ },
+ {
+  "image": "images/diaporama/warp.webp",
+  "onglet": "Warp",
+  "preset": "Ultra Node",
+  "dossier": "Bass",
+  "scene": true
+ },
+ {
+  "image": "images/diaporama/mangle.webp",
+  "onglet": "Mangle",
+  "preset": "DeFaUlT",
+  "dossier": "Factory",
+  "scene": true
+ },
+ {
+  "image": "images/diaporama/pluck.webp",
+  "onglet": "Pluck",
+  "preset": "X perp",
+  "dossier": "Texture",
+  "scene": false
+ },
+ {
+  "image": "images/diaporama/motion.webp",
+  "onglet": "Motion",
+  "preset": "DeFaUlT",
+  "dossier": "Factory",
+  "scene": true
+ },
+ {
+  "image": "images/diaporama/spectron.webp",
+  "onglet": "Spectron",
+  "preset": "DeFaUlT",
+  "dossier": "Factory",
+  "scene": true
+ },
+ {
+  "image": "images/diaporama/capture.webp",
+  "onglet": "Capture",
+  "preset": "Captured",
+  "dossier": "Pad",
+  "scene": false
+ },
+ {
+  "image": "images/diaporama/env.webp",
+  "onglet": "Env",
+  "preset": "DeFaUlT",
+  "dossier": "Factory",
+  "scene": true
+ },
+ {
+  "image": "images/diaporama/punch.webp",
+  "onglet": "Punch",
+  "preset": "DeFaUlT",
+  "dossier": "Factory",
+  "scene": true
+ },
+ {
+  "image": "images/diaporama/eq-filters.webp",
+  "onglet": "EQ's / Filters",
+  "preset": "Tech It",
+  "dossier": "Lead",
+  "scene": false
+ },
+ {
+  "image": "images/diaporama/modal.webp",
+  "onglet": "Modal",
+  "preset": "Manta Pulse",
+  "dossier": "Pad",
+  "scene": false
+ },
+ {
+  "image": "images/diaporama/routing.webp",
+  "onglet": "Routing",
+  "preset": "Bass Kord",
+  "dossier": "Bass",
+  "scene": false
+ },
+ {
+  "image": "images/diaporama/modulation.webp",
+  "onglet": "Modulation",
+  "preset": "Minim",
+  "dossier": "Kits",
+  "scene": false
+ },
+ {
+  "image": "images/diaporama/fx-crush.webp",
+  "onglet": "Crush",
+  "preset": "Skonim",
+  "dossier": "Percussion",
+  "scene": false
+ },
+ {
+  "image": "images/diaporama/fx-dist.webp",
+  "onglet": "Dist",
+  "preset": "Nimrenax",
+  "dossier": "Kits",
+  "scene": false
+ },
+ {
+  "image": "images/diaporama/fx-filterfx.webp",
+  "onglet": "Filter FX",
+  "preset": "Deeper",
+  "dossier": "Percussion",
+  "scene": false
+ },
+ {
+  "image": "images/diaporama/fx-disperse.webp",
+  "onglet": "Disperse",
+  "preset": "Kelskuve Tuesday",
+  "dossier": "Chords",
+  "scene": false
+ },
+ {
+  "image": "images/diaporama/fx-chorus.webp",
+  "onglet": "Chorus",
+  "preset": "Sequence Alarm",
+  "dossier": "Sequence",
+  "scene": false
+ },
+ {
+  "image": "images/diaporama/fx-flange.webp",
+  "onglet": "Flange",
+  "preset": "Singin Snare",
+  "dossier": "Drums",
+  "scene": false
+ },
+ {
+  "image": "images/diaporama/fx-phaser.webp",
+  "onglet": "Phaser",
+  "preset": "Complaint",
+  "dossier": "Lead",
+  "scene": false
+ },
+ {
+  "image": "images/diaporama/fx-taps.webp",
+  "onglet": "Taps",
+  "preset": "Rapolo",
+  "dossier": "Percussion",
+  "scene": false
+ },
+ {
+  "image": "images/diaporama/fx-lush.webp",
+  "onglet": "Lush",
+  "preset": "Intermission",
+  "dossier": "Texture",
+  "scene": false
+ },
+ {
+  "image": "images/diaporama/fx-reverb.webp",
+  "onglet": "Reverb",
+  "preset": "Nozor",
+  "dossier": "Organ",
+  "scene": false
+ },
+ {
+  "image": "images/diaporama/fx-cloud.webp",
+  "onglet": "Cloud",
+  "preset": "Coton Travel",
+  "dossier": "Chords",
+  "scene": false
+ },
+ {
+  "image": "images/diaporama/fx-delay.webp",
+  "onglet": "Delay",
+  "preset": "Kaore Reggae",
+  "dossier": "Kits",
+  "scene": false
+ },
+ {
+  "image": "images/diaporama/fx-prism.webp",
+  "onglet": "Prism",
+  "preset": "Sweet Chroma",
+  "dossier": "Pad",
+  "scene": false
+ },
+ {
+  "image": "images/diaporama/fx-eqfxa.webp",
+  "onglet": "EQ Fx A",
+  "preset": "First Attempt",
+  "dossier": "Lead",
+  "scene": false
+ },
+ {
+  "image": "images/diaporama/fx-sidechain.webp",
+  "onglet": "Sidechain",
+  "preset": "Mutation One",
+  "dossier": "FX",
+  "scene": false
+ },
+ {
+  "image": "images/diaporama/fx-spatial.webp",
+  "onglet": "Spatial",
+  "preset": "Tamula",
+  "dossier": "Drums",
+  "scene": false
+ },
+ {
+  "image": "images/diaporama/fx-dynamics.webp",
+  "onglet": "Dynamics",
+  "preset": "Not Captured",
+  "dossier": "Texture",
+  "scene": false
+ },
+ {
+  "image": "images/diaporama/presets.webp",
+  "onglet": "Presets",
+  "preset": "Lox Dealer",
+  "dossier": "Lead",
+  "scene": false
+ }
+]
