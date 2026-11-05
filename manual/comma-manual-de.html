@@ -1,0 +1,1097 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Comma Handbuch</title>
+<link rel="stylesheet" href="manuel.css">
+</head>
+<body>
+<div class="layout">
+<nav class="toc">
+  <div class="brand">COMMA</div>
+  <p class="langs"><a href="comma-manual-en.html">English</a> <a href="comma-manual-fr.html">Français</a> <a href="comma-manual-de.html">Deutsch</a> <a href="comma-manual-it.html">Italiano</a> <a href="comma-manual-es.html">Español</a></p>
+  <ol>
+    <li><a href="#welcome">1. Willkommen</a></li>
+    <li><a href="#install">2. Installation und Lizenz</a></li>
+    <li><a href="#quick">3. Schnellstart</a></li>
+    <li><a href="#window">4. Das Fenster</a></li>
+    <li><a href="#controls">5. Bedienung der Regler</a></li>
+    <li><a href="#voices">6. Die acht Stimmen</a></li>
+    <li><a href="#engines">7. Die Engines</a>
+      <ol>
+        <li><a href="#eng-add">Add</a></li><li><a href="#eng-impact">Impact</a></li><li><a href="#eng-chaos">Chaos</a></li>
+        <li><a href="#eng-logic">Logic</a></li><li><a href="#eng-shard">Shard</a></li><li><a href="#eng-wave">Wave</a></li>
+        <li><a href="#eng-sample">Sample</a></li><li><a href="#eng-noise">Noise</a></li><li><a href="#eng-empty">Empty</a></li>
+      </ol></li>
+    <li><a href="#pages">8. Die Stimmenseiten</a>
+      <ol>
+        <li><a href="#pg-attack">Attack</a></li><li><a href="#pg-pm">PM</a></li><li><a href="#pg-diss">Diss</a></li><li><a href="#pg-warp">Warp</a></li>
+        <li><a href="#pg-mangle">Mangle</a></li><li><a href="#pg-pluck">Pluck</a></li><li><a href="#pg-motion">Motion</a></li>
+        <li><a href="#pg-spectron">Spectron</a></li><li><a href="#pg-capture">Capture</a></li><li><a href="#pg-env">Env</a></li>
+        <li><a href="#pg-transient">Punch</a></li>
+      </ol></li>
+    <li><a href="#global">9. Global und Sub</a></li>
+    <li><a href="#eqf">10. EQ's/Filters</a></li>
+    <li><a href="#fx">11. Die FX-Leiste</a></li>
+    <li><a href="#out">12. Ausgang: Master, Limiter, Pegelanzeige</a></li>
+    <li><a href="#mod">13. Modulation</a></li>
+    <li><a href="#play">14. Spielen: Tastatur, Akkorde, Skala</a></li>
+    <li><a href="#presets">15. Presets und Bänke</a></li>
+    <li><a href="#dice">16. Die Würfel</a></li>
+    <li><a href="#ref">17. Kurzreferenz</a></li>
+  </ol>
+</nav>
+
+<main>
+<h1>Comma</h1>
+<p class="subtitle">Benutzerhandbuch &middot; Version 1.0 &middot; Windows, VST3 und Standalone</p>
+
+<!-- ============================================================ -->
+<h2 id="welcome">1. Willkommen</h2>
+<p>Comma ist ein Synthesizer, der um eine Idee herum gebaut ist: <strong>Jede gespielte Note ist ein Akkord aus bis zu acht Stimmen</strong>. Jede Stimme
+spielt die Note in ihrem eigenen <strong>Verhältnis</strong> (1 = die Note, 2 = eine Oktave höher, 1,5 = eine Quinte ...), und jede Stimme hat ihre eigene
+<strong>Engine</strong>: additive Teiltöne, ein angeschlagener Körper, ein chaotisches System, Logikgatter, Wavetables, Grains, Rauschen. Um die
+Stimmen herum liegen Filter und EQs, eine Effektkette, deren Reihenfolge Sie frei ändern können, und ein Modulationssystem mit 32 Quellen,
+einer Matrix mit 32 Verbindungen, acht Makros und einem XY-Pad.</p>
+<p>Comma ist <strong>monophon</strong>: Es spielt immer nur eine Note (die zuletzt gehaltene Taste hat Vorrang). Der Akkord entsteht aus den acht Stimmen
+und ihren Verhältnissen, nicht aus mehreren gedrückten Tasten. So bleiben die acht Engines bezahlbar, und der Akkord ist in sich immer
+rein gestimmt.</p>
+<h3>Warum „Comma“</h3>
+<p>In der Musiktheorie ist ein <em>Komma</em> ein winziges Intervall: der Rest, der immer übrig bleibt, wenn man reine Intervalle übereinanderschichtet.
+Zwölf reine Quinten übersteigen sieben Oktaven um das pythagoreische Komma (etwa 23,5 Cent); vier reine Quinten übersteigen eine reine große Terz um das
+syntonische Komma (81/80, etwa 21,5 Cent). Die gleichstufige Stimmung verbirgt diese Abweichungen, indem sie sie auf die zwölf Halbtöne verteilt.
+Comma arbeitet auf der anderen Seite: Seine Verhältnisse können rein sein (der goldene Würfel der Ratio-Presets würfelt Akkorde in reinen Intervallen),
+seine Dissonanzschaltung kann die Teiltöne auf ein Raster von 12 bis 31 Tönen pro Oktave legen, und schon wenige Cent Verstimmung zwischen den Stimmen
+genügen, damit ein Akkord schwebt.</p>
+<div class="note">Fahren Sie mit der Maus über einen Regler, um zu sehen, was er bewirkt: Die Schaltfläche <span class="ui">?</span> oben schaltet diese Hinweise
+ein und aus. Jeder Regler in diesem Handbuch hat seinen Hinweis im Plugin.</div>
+
+<!-- ============================================================ -->
+<h2 id="install">2. Installation und Lizenz</h2>
+<h3>Was das Installationsprogramm tut</h3>
+<ul>
+  <li><strong>Comma.vst3</strong> wird in den gemeinsamen VST3-Ordner (<code>C:\Program Files\Common Files\VST3</code>) installiert, in dem jeder Host sucht.</li>
+  <li><strong>Comma.exe</strong>, die Standalone-Anwendung, wird in <code>Program Files\HavFun Company\Comma</code> installiert, mit einer Verknüpfung im
+      Startmenü (eine Desktop-Verknüpfung ist optional).</li>
+  <li>Die <strong>Werksbank</strong> (Presets, Wavetables, Samples, Filter- und EQ-Kurven ...) wird in <code>Documents\Comma</code> abgelegt.
+      Das Installationsprogramm überschreibt nie eine bereits vorhandene Datei und entfernt diesen Ordner bei der Deinstallation nie: Von nun an
+      sind das Ihre Klänge.</li>
+</ul>
+<p>Comma läuft unter 64-Bit-Windows. Formate: VST3 und Standalone. Das Plugin ist ein Instrument: Es braucht MIDI vom Host. Außerdem hat es einen
+optionalen Stereo-<strong>Sidechain</strong>-Eingang, den der Sidechain-Effekt (Modus Input) und die Modulationsquelle Follow nutzen; aktivieren Sie ihn
+im Routing Ihres Hosts.</p>
+
+<h3>Testphase und Aktivierung</h3>
+<p>Comma läuft ab dem ersten Start <strong>14 Tage</strong> lang ohne Einschränkung. Nach Ablauf der Testphase wird der Klang ausgeblendet, und das
+Lizenzfenster verdeckt die Oberfläche, bis Sie aktivieren. Eine Neuinstallation startet die Testphase nicht neu.</p>
+<ol>
+  <li>Comma kaufen: <span class="ui">Menu</span> &rarr; <span class="ui">License...</span> &rarr; <span class="ui">Buy Comma</span> öffnet den Shop.</li>
+  <li>Sie erhalten einen Lizenzschlüssel per E-Mail. Fügen Sie ihn in das Lizenzfenster ein und klicken Sie auf <span class="ui">Activate</span>.
+      Dafür ist einmalig eine Internetverbindung nötig.</li>
+  <li>Ein Schlüssel gilt für <strong>3 Computer</strong>. <span class="ui">Deactivate</span> gibt diesen Computer frei, damit Sie den Schlüssel auf einem anderen nutzen können.</li>
+</ol>
+<p>Nach der Aktivierung arbeitet Comma offline. Es prüft den Schlüssel gelegentlich beim Shop; offline zu sein ändert daran nichts. Übertragen werden
+nur der Schlüssel und ein anonymer Fingerabdruck des Computers, sonst nichts. Das Lizenzfenster zeigt den Status: die verbleibenden Tage der Testphase
+oder „Activated on this computer“ mit teilweise maskiertem Schlüssel.</p>
+
+<!-- ============================================================ -->
+<h2 id="quick">3. Schnellstart</h2>
+<ol>
+  <li>Laden Sie Comma auf eine Instrumentenspur (oder öffnen Sie die Standalone-Version) und spielen Sie eine Note: Sie hören das Startpreset <em>DeFaUlT</em>.</li>
+  <li>Klicken Sie auf die Pfeile der Presetliste oben oder auf den <strong>goldenen Würfel</strong> daneben, um andere Presets zu hören.</li>
+  <li>Öffnen Sie den Tab <span class="ui">Synthesis</span>: Jede Zeile ist eine Stimme. Ändern Sie die <span class="ui">Ratio</span> einer Stimme, und der
+      Akkord ändert sich. Klicken Sie auf das Engine-Feld (<span class="ui">Add</span>, <span class="ui">Wave</span> ...), um zu wählen, was die Stimme ist.</li>
+  <li>Klicken Sie auf die Nummer einer Stimme, um sie stummzuschalten, auf ihren Kopfhörer, um sie solo zu hören.</li>
+  <li>Öffnen Sie <span class="ui">FX</span>, schalten Sie einen Effekt mit dem Symbolfeld links auf seiner Leistenschaltfläche ein und ziehen Sie die
+      Schaltfläche nach oben oder unten, um die Reihenfolge der Effekte zu ändern.</li>
+  <li>Ziehen Sie eine <span class="ui">Mod 1</span>-Schaltfläche (unten rechts) auf einen beliebigen Drehregler: Dieser Regler bewegt sich nun mit Mod 1.
+      Fahren Sie mit der Maus über die Mod-Schaltfläche, um alles zu sehen, was sie bewegt.</li>
+  <li>Speichern Sie Ihren Klang: Öffnen Sie das Menü der Presetliste und wählen Sie <span class="ui">Save As</span>, oder verwenden Sie den Tab <span class="ui">Presets</span>.</li>
+</ol>
+
+<!-- ============================================================ -->
+<h2 id="window">4. Das Fenster</h2>
+<figure><img src="img/overview.webp" alt="Das Comma-Fenster mit nummerierten Bereichen">
+<figcaption>Der Tab Synthesis, Seite Engine. Die Nummern entsprechen der Liste unten.</figcaption></figure>
+<ol class="callouts">
+  <li><strong>Haupt-Tabs</strong>: <span class="ui">Synthesis</span> (die acht Stimmen: ihre Engines und ihre Seiten),
+      <span class="ui">EQ's/Filters</span> (EQ A-D, F1-F4, Modal, Warmth), <span class="ui">Modulation</span> (die Modulationsquellen und die
+      Matrix), <span class="ui">FX</span> (die Effektleiste), <span class="ui">Presets</span> (der Preset-Browser).</li>
+  <li><strong>Stimmenseiten</strong> (Tab Synthesis): Engine, Attack, PM, Diss, Warp, Mangle, Pluck, Motion, Spectron, Capture, Env, Punch. Sie
+      folgen dem Signal von links nach rechts. Das Symbol vor dem Namen einer Seite leuchtet, wenn diese Seite bei mindestens einer Stimme etwas bewirkt.</li>
+  <li><span class="ui">Scale</span>: zieht die gespielten Noten auf eine Skala (siehe <a href="#play">Spielen</a>).</li>
+  <li><span class="ui">?</span>: schaltet die Hinweise ein oder aus.</li>
+  <li>Die <strong>Presetliste</strong>, ihre Pfeile und ihre beiden Würfel.</li>
+  <li>Die <strong>Ratio-Presets</strong>: Akkorde für die acht Stimmen, mit eigenen Würfeln. Daneben <strong>Mutate</strong> und seine Stärke (siehe Die Würfel).</li>
+  <li><span class="ui">Menu</span>: Farbschema, Fenstergröße, Lizenz; in der Standalone-Anwendung ihr Tempo.</li>
+  <li>Die <strong>Stimmenköpfe</strong>: Verhältnis, Verstimmung, Panorama, Engine, Mute, Solo, Würfel und ein Live-Spektrum für jede Stimme. Die Spalte lässt sich bis V8 scrollen.</li>
+  <li>Der <strong>Stimmenkörper</strong>: die unter 2 gewählte Seite, für jede Stimme.</li>
+  <li>Der Rahmen <strong>Global / Sub</strong>: Tonhöhe, Anschlagdynamik, Pegel in die Effekte, Stimmenfader, Master-Hüllkurve, Glide; oder der Sub-Oszillator.</li>
+  <li>Die <strong>Mod-Kurzwahlen</strong>: Ziehen Sie eine davon auf einen beliebigen Regler, um ihn zu modulieren.</li>
+  <li>Der <strong>Leistenumschalter</strong>: <span class="ui">M</span> Makros, <span class="ui">K</span> Tastatur, <span class="ui">C</span> Akkordfolge.</li>
+  <li>Die <strong>Makros</strong> M1-M8 (oder die Tastatur, oder die Akkordschritte).</li>
+  <li>Die <strong>Ausgangsspalte</strong>: Master-Lautstärke, Limiter, Pegelanzeige, CPU, <span class="ui">Rec</span>.</li>
+</ol>
+<p>Die Fenstergröße lässt sich durch Ziehen an der Ecke ändern (50 bis 300 %) oder über <span class="ui">Menu</span> &rarr;
+<span class="ui">Window Size</span> (75, 100, 125, 150 oder 200 %). <span class="ui">Menu</span> &rarr; <span class="ui">Theme</span>
+ändert die Farbe: Cyan, Emerald, Azure, Violet oder Silver. Beides wird auf diesem Computer gespeichert, nicht in den Presets.</p>
+<p>In der Standalone-Anwendung stellt <span class="ui">Menu</span> &rarr; <span class="ui">Standalone Tempo</span> das Tempo
+für alles ein, was sich daran ausrichtet (LFOs, Delay, Taps, Hüllkurven mit SYNC), wenn kein Host eines vorgibt: 20 bis 300 BPM, auf diesem Computer gespeichert.
+In einem Host gilt das Tempo des Hosts.</p>
+
+<!-- ============================================================ -->
+<h2 id="controls">5. Bedienung der Regler</h2>
+<table>
+  <tr><th>Geste</th><th>Wirkung</th></tr>
+  <tr><td>Ziehen</td><td>Ändert den Wert. Drehregler folgen senkrechtem oder waagerechtem Ziehen; Wertfelder folgen waagerechtem Ziehen. Ein bloßer Klick lässt einen Wert nie springen.</td></tr>
+  <tr><td>Klick auf ein Auswahlfeld</td><td>Bis zu sechs Auswahlen: schaltet zur nächsten weiter (nach der letzten wieder zur ersten). Mehr als sechs (Notenwerte, Engines, Warp-Modi und -Quellen, Routes ...): öffnet ein Menü mit allen Auswahlen, in Abschnitte gegliedert (bei Notenwerten: gerade, punktiert, Triolen), die aktuelle mit Häkchen. Ziehen oder das Mausrad schaltet durch die Auswahlen.</td></tr>
+  <tr><td>Schalter und Wahlschalter</td><td>(Peak / RMS / LUFS, M / K / C, die Dist-Schaltungen, der Mod-Typ ...) Klicken Sie auf die gewünschte Position oder ziehen Sie den Schieber dorthin. Bei zwei oder drei Positionen schaltet ein Klick auf die aktuelle zur nächsten weiter.</td></tr>
+  <tr><td>Mausrad</td><td>Auf einem Wertfeld: ein Schritt pro Raste.</td></tr>
+  <tr><td>Doppelklick</td><td>Zurück zum Standardwert. Auf einem Makro-Drehregler: zurück in die Ruhestellung. Auf einem Panoramafeld: Mitte.</td></tr>
+  <tr><td>Dreifachklick</td><td>Öffnet <em>Set value...</em>: Geben Sie den Wert in der angezeigten Einheit ein (das Fenster nennt den Bereich). Enter = OK, Esc = Abbrechen.</td></tr>
+  <tr><td>Rechtsklick</td><td>Das Menü des Reglers: <em>Set value...</em> und für jede Modulationsverbindung, die ihn erreicht: Amount +10 %, Amount -10 %, Invert sign, Set amount..., Remove link.</td></tr>
+  <tr><td>Überfahren mit der Maus</td><td>Eine Sprechblase zeigt den Wert. Ist <span class="ui">?</span> eingeschaltet, erklärt ein Hinweis den Regler.</td></tr>
+  <tr><td>SYNC (Hüllkurvengraphen)</td><td>Oben links in jedem Hüllkurvengraphen außer der Tonhöhe: Attack, Decay und Release werden zu Notenwerten des Tempos (von 0 bis 4 Takte, Triolen und punktiert). Jede Zeit nimmt den nächstgelegenen Wert, gelesen bei 120 BPM (0,5 s = eine Viertelnote): Das Ziehen eines Punkts springt von einem Wert zum nächsten, und die Zahlen zeigen Notenwerte. Eine Modulationsquelle auf Attack oder Decay bewegt sie weiterhin, Wert für Wert. Aus: die Zeiten in Sekunden kehren unverändert zurück.</td></tr>
+</table>
+<p>Es gibt zwei Arten von Sprechblasen: Der <strong>Hinweis</strong> (wozu ein Regler dient) erscheint nur, wenn <span class="ui">?</span> leuchtet; die
+<strong>Information</strong> (ein Wert, oder was eine Modulationsquelle gerade bewegt) erscheint beim Überfahren immer.</p>
+<p>Ein Regler, der bei den aktuellen Einstellungen keine Wirkung hat, ist <strong>ausgegraut</strong> (zum Beispiel Res des Crush-Filters,
+solange sein Band ganz offen ist).</p>
+<h3>Anklickbare Beschriftungen</h3>
+<p>Eine Beschriftung ist nicht immer nur ein Name. Manche Beschriftungen sind selbst die Stummschaltung oder der Schalter dessen, was sie benennen: Klicken Sie auf das Wort. Die Beschriftung
+zeigt den aktuellen Zustand durch ihre Farbe oder ihren Text. Der Wert hinter einer Beschriftung, die den Modus wechselt, bleibt erhalten: Schalten Sie zurück, und er ist noch da.</p>
+<table class="col-libre">
+  <tr><th>Beschriftung</th><th>Ein Klick ...</th></tr>
+  <tr><td>Stimmennummer (1 ... 8), im Stimmenkopf und über den Stimmenfadern</td><td>Schaltet die Stimme stumm. Die Nummer wird grau, Engine, Spektrum und Seite der Stimme werden blass; Sie können sie weiter einstellen.</td></tr>
+  <tr><td><span class="ui">Sub</span> (über seinem Fader)</td><td>Schaltet den Sub ein oder aus (ausgeschaltet grau).</td></tr>
+  <tr><td>Rahmentitel <span class="ui">ATTACK</span>, <span class="ui">WARP 1</span>, <span class="ui">WARP 2</span></td><td>Schalten diesen Block aus oder ein (ausgeschaltet blasser Titel). Warp behält seinen Modus.</td></tr>
+  <tr><td><span class="ui">Ratio</span> / <span class="ui">Hz</span> (Stimmenkopf)</td><td>Die Stimme folgt der Tastatur in einem Verhältnis oder spielt eine feste Frequenz.</td></tr>
+  <tr><td><span class="ui">Semi</span> (Wave A und B, Logic A und B), <span class="ui">Pitch</span> (Impact, Noise-Band), <span class="ui">Cut</span> (Attack-Filter), <span class="ui">Ratio</span> (Mangle Mod und Rate)</td><td>Schaltet in den Hz-Modus: Die Beschriftung wird zu <span class="ui">Hz</span>, und das Feld gibt eine Frequenz an. Klicken Sie auf <span class="ui">Hz</span>, um zurückzukehren.</td></tr>
+  <tr><td><span class="ui">Div</span> / <span class="ui">Time</span> (Delay, Prism), <span class="ui">Div</span> / <span class="ui">Rate</span> (Flange, Phaser, die Mods)</td><td>Ein Notenwert des Host-Tempos oder eine freie Zeit oder Rate. Nur ein Feld wird angezeigt, an derselben Stelle.</td></tr>
+  <tr><td><span class="ui">Snap</span> (Sidechain)</td><td>Schaltet durch den Magneten der Kurve: Off, 1/4, 1/8, 1/16, 1/32.</td></tr>
+  <tr><td><span class="ui">Init</span> (Sidechain), <span class="ui">Mask</span> (Cloud)</td><td>Eine Aktion: die Ausgangskurve zurück; alle Bereiche der Maske wieder an.</td></tr>
+</table>
+<p>Ein Klick auf den Titel eines Engine-Rahmens (<span class="ui">ADD</span>, <span class="ui">WAVE</span> ...) öffnet die Liste der Engines dieser Stimme.
+Der Kopfhörer ist das Solo, wo immer er erscheint.</p>
+<p><strong>Rückgängig.</strong> Comma hat kein allgemeines Rückgängig, aber jede Änderung wird dem Host gemeldet, sodass die Rückgängig-Funktion
+Ihres Hosts sie sieht. Würfel und Einfügen haben ein eigenes Rückgängig: Rechtsklick auf einen Würfel stellt den Zustand vor dem Wurf wieder her;
+<em>Undo paste</em> in den Kopiermenüs.</p>
+
+<!-- ============================================================ -->
+<h2 id="voices">6. Die acht Stimmen</h2>
+<p>Jede Stimme spielt die gehaltene Note, multipliziert mit ihrem Verhältnis. Die acht Stimmen zusammen bilden den Akkord. Eine Stimme mit der
+Engine <span class="ui">Empty</span> ist stumm und kostet nichts.</p>
+
+<h3>Der Stimmenkopf</h3>
+<figure><img src="img/voice-head.webp" alt="Der Kopf der Stimme V1"><figcaption>Der Kopf von V1.</figcaption></figure>
+<table>
+  <tr><th>Regler</th><th>Funktion</th></tr>
+  <tr><td>Stimmennummer</td><td>Klick schaltet die Stimme stumm (sie wird grau, ihre Engine, ihr Spektrum und ihre Seite werden blass). Rechtsklick: <em>Copy</em> kopiert den Klang dieser Stimme, <em>Paste</em> fügt ihn auf einer anderen Stimme ein, <em>Copy to the other voices</em>, <em>Undo paste</em>. Verhältnis, Verstimmung, Pegel, Panorama, Mute und Solo werden nicht kopiert. Ein Impact-Exciter, der auf die Zielstimme selbst zeigen würde, springt auf Hit zurück.</td></tr>
+  <tr><td>Kopfhörer</td><td>Schaltet diese Stimme solo. Eine Solo-Stimme spielt auch dann, wenn sie stummgeschaltet ist.</td></tr>
+  <tr><td>Engine-Feld</td><td>Die Engine der Stimme: Add, Impact, Chaos, Logic, Shard, Wave, Sample, Noise oder Empty. Klick: die Liste der Engines (ein zweiter Klick schließt sie); Ziehen: durch sie blättern. Der Titel des Engine-Rahmens öffnet dieselbe Liste.</td></tr>
+  <tr><td>Würfel (drei)</td><td>Silber: würfelt nur die Engine (nie Empty). Gold: würfelt eine spielbare Textur für die Stimme (Dissonanzschaltung, Pluck, PM, Spectron mit seiner Kurve und ihre beiden Warps). Rosa: dasselbe über den gesamten Bereich. Rechtsklick auf einen davon: zurück zum vorherigen Zustand.</td></tr>
+  <tr><td>Ratio</td><td>Tonhöhe der Stimme als Vielfaches der Note: 1 = die Note, 2 = eine Oktave höher, 1,5 = eine Quinte (0,1 bis 8). Ziehen Sie eine Ziffer nach oben oder unten, um sie zu ändern (<kbd>Ctrl</kbd>: langsamer), klicken Sie, um einen Wert einzugeben. Legen Sie hier eine Modulationsquelle ab, um nur die Tonhöhe dieser Stimme zu modulieren, in Halbtönen. Klicken Sie auf die Beschriftung <span class="ui">Ratio</span> oder rechtsklicken Sie auf das Feld für eine <strong>feste Frequenz</strong> (10 bis 999,9 Hz): Die Stimme ignoriert die Tastatur, für einen Drone, eine Kick oder ein Tom. Pitch, Verstimmung und die Tonhöhenhüllkurve bewegen sie weiterhin.</td></tr>
+  <tr><td>ct (V Detune)</td><td>Verstimmt die Stimme gegenüber ihrem Verhältnis, unabhängig von ihrer Engine (bis zu 2 Halbtöne in beide Richtungen). Ein paar Cent gegen die anderen Stimmen: Sie schweben, und der Akkord atmet. Rechtsklick: Verstimmung stattdessen in <strong>Hz</strong> (bis zu 20 Hz in beide Richtungen), dieselbe Schwebung auf jeder Note, während Cent-Werte zur Höhe hin schneller schweben.</td></tr>
+  <tr><td>Pan</td><td>Panorama der Stimme. Doppelklick: Mitte. Die Einstellung <span class="ui">Stereo</span> von Spatial macht alle Stimmen auf einmal breiter oder schmaler.</td></tr>
+  <tr><td>Spectrum</td><td>Das Live-Spektrum am Ausgang dieser Stimme (30 Hz bis 16 kHz, 72 dB Bereich).</td></tr>
+</table>
+<p>Den Pegel jeder Stimme regelt ihr Fader im Rahmen <a href="#global">Global</a>, mit Marken bei 0 und -6 dB.</p>
+
+<h3>Pegel: Sie verwalten die Verstärkung</h3>
+<p>In Comma bedeutet <strong>0 dB „der Pegel ändert sich nicht“</strong>. Wie an einem Mischpult senkt nichts den Pegel hinter Ihrem Rücken: Zwei
+Stimmen mit gleichem Pegel sind lauter als eine, das Stummschalten einer Stimme hebt die anderen nicht an, und acht Stimmen mit vollem Pegel müssen Sie selbst absenken.
+Eine Schutzstufe ganz am Ende des Ausgangs rundet nur ab, was übersteuern würde; sie ist keine Pegelregelung.</p>
+<p>Die Aussteuerungsreserve ist also sichtbar, in den Einstellungen. Ein neuer Klang beginnt mit dem Fader jeder Stimme auf <strong>-6 dB</strong>,
+<span class="ui">Gain</span> (Pegel in die Effekte) auf <strong>-3 dB</strong> und <span class="ui">Master</span> auf <strong>-9 dB</strong>.
+Ein Doppelklick bringt diese drei auf diese Werte zurück. Presets behalten ihre eigenen Pegel.</p>
+
+<h3>Ratio-Presets</h3>
+<p>Die Liste oben rechts, <em>(Ratio presets)</em>, speichert <strong>nur Verhältnisse</strong>: einen Akkord für die acht Stimmen. Ein geladenes Ratio-Preset
+ändert die Töne des Akkords, nie den Klang. Die Liste enthält auch eingebaute Akkorde. Ihr goldener Würfel würfelt einen Akkord in
+<strong>reinen</strong> Verhältnissen (Oktaven, Quinten, Terzen, Naturtöne); ihr rosa Würfel würfelt Verhältnisse irgendwo im Bereich
+(„meist unbrauchbar, ab und zu etwas, das niemand geschrieben hätte“). Rechtsklick auf einen Würfel macht den Wurf rückgängig.</p>
+
+<!-- ============================================================ -->
+<h2 id="engines">7. Die Engines</h2>
+<p>Die Seite <span class="ui">Engine</span> zeigt das Engine-Feld jeder Stimme. Jede Engine hat ein <span class="ui">Vol</span> (ihr Pegel in der
+Stimme) und ein <span class="ui">KeyT</span> (Key Tracking: bei 100 folgt die Engine der Note; bei 0 bleibt sie nahe C4, egal was Sie spielen – eine feste
+Tonhöhe oder Textur; dazwischen folgt sie weniger stark). Mehrere Tonhöhenregler haben einen <strong>Hz-Modus</strong>: Klicken Sie auf die Beschriftung
+(<span class="ui">Semi</span>, <span class="ui">Pitch</span> oder <span class="ui">Cut</span>), um stattdessen eine feste Frequenz einzustellen; ein erneuter Klick schaltet zurück.
+Im Hz-Modus gibt das Mausrad feine Schritte.</p>
+<p>Klicken Sie auf den Titel einer Engine (<span class="ui">ADD</span>, <span class="ui">IMPACT</span> ...), um die Liste der Engines zu öffnen und sie zu wechseln: dieselbe Liste wie im Stimmenkopf. Nichts ändert sich, bis Sie wählen; ein zweiter Klick schließt die Liste. Die Engine einer stummgeschalteten Stimme wird blass.</p>
+<figure><img src="img/engines-a.webp" alt="Die Engines Add, Impact, Chaos und Logic"><figcaption>Die Seite Engine: Add, Impact, Chaos und Logic.</figcaption></figure>
+<figure><img src="img/engines-b.webp" alt="Die Engines Shard, Wave, Sample und Noise"><figcaption>Shard, Wave, Sample und Noise.</figcaption></figure>
+<p><strong>Blättern.</strong> Die Graphen von Wave, den Tabellen von Shard, Impact, Sample und Noise haben zwei Pfeile, links und rechts: Sie blättern durch die Liste, ohne sie zu öffnen. Die Listen sind in Familien geordnet (bei Tabellen und Samples die Unterordner der Bibliothek).</p>
+<p><strong>Eigene Rezepte.</strong> Die Listen von Impact, Sample und Noise speichern ihre Einstellungen als Rezepte. Ändern Sie ein Rezept, zeigt die Liste <em>Custom</em>; in der rechten Spalte der Liste verwalten <em>Save</em>, <em>Save As</em>, <em>Rename</em> und <em>Delete</em> Ihre eigenen (die von Comma sind geschützt), und <em>Recipes</em> öffnet ihren Ordner. Ihre erscheinen in denselben Familien. Die Würfel ziehen nur aus denen von Comma.</p>
+<p><strong>Fehlende Dateien.</strong> Verlangt ein Preset eine Tabelle oder ein Sample, das Sie nicht haben, zeigt die Liste oder der Graph <em>MISSING</em>; fahren Sie mit der Maus darüber, um den Dateinamen zu lesen. Eine fehlende Tabelle spielt <em>Basic</em>.</p>
+
+<h3 id="eng-add">Add</h3>
+<p>Die additive Engine: Die Stimme wird aus Teiltönen (Obertönen) aufgebaut, die jeweils einzeln berechnet werden. Auf diese Engine wirken die
+Stimmenseiten am feinsten, Teilton für Teilton.</p>
+<table>
+  <tr><th>Regler</th><th>Funktion</th></tr>
+  <tr><td>Graph</td><td>Die Teiltöne, wie die Engine sie erzeugt: ein Balken pro Teilton, bei seiner Frequenz (20 Hz bis 20 kHz, Marken bei 100 Hz, 1 kHz und 10 kHz; ohne Note die zuletzt gespielte) und seinem Pegel. Mit KeyT auf 100 folgt der Kamm den Tasten; auf 0 bleibt er stehen.</td></tr>
+  <tr><td>Det Rank</td><td>Wie sich die Verstimmung der Stimme (V Detune) auf ihre Teiltöne verteilt. 0: dieselbe Verstimmung für alle, sie wandern gemeinsam (ein Chorus). +1: Sie verdoppelt sich von den tiefen zu den hohen Teiltönen; -1 umgekehrt: Jeder schwebt in seinem eigenen Tempo (ein Schwarm). Keine Wirkung, solange V Detune auf 0 steht.</td></tr>
+  <tr><td>Partials</td><td>Wie viele Teiltöne berechnet werden, auch gebrochene Werte (der oberste wird eingeblendet). Fahren Sie den Regler durch, um das Spektrum stufenlos zu öffnen.</td></tr>
+  <tr><td>Slope</td><td>Pegelverhältnis der Teiltöne. 1 = klassisch (jeder Teilton bei 1/n, wie ein Sägezahn). Niedriger = heller: 0 = alle gleich laut, unter 0 werden die hohen lauter. Höher = dunkler. Der Gesamtpegel bleibt gleich.</td></tr>
+  <tr><td>KeyT, Vol</td><td>Key Tracking und Pegel (siehe oben).</td></tr>
+  <tr><td>Würfel</td><td>Gold: ein spielbares Spektrum (Partials 4 bis 40, Slope 0,6 bis 1,6, ein gemäßigtes Det Rank). Rosa: Partials, Slope und Det Rank über ihren gesamten Bereich.</td></tr>
+</table>
+
+<h3 id="eng-impact">Impact</h3>
+<p>Ein angeschlagener Körper: eine Gruppe resonanter Moden, von nahezu harmonischen Röhren bis zu dichten, scheppernden Platten.</p>
+<table>
+  <tr><th>Regler</th><th>Funktion</th></tr>
+  <tr><td>Graph</td><td>Die Moden des Körpers: Jeder Balken ist eine Mode, nach Frequenz angeordnet (eine Oktave unter der Note bis neun darüber), so hoch, wie Position sie klingen lässt, und heller, je länger sie klingt. Klick: die Liste der Körper.</td></tr>
+  <tr><td>Objektliste</td><td>Impact-Rezepte nach Kategorie. <em>Custom</em>, wenn keines passt. Goldener Würfel: eine andere Kategorie derselben Familie; rosa Würfel: der ganze Körper beliebig.</td></tr>
+  <tr><td>Material</td><td>Tube, Bell, Bar, Membrane, Plate, von nahezu harmonisch bis dicht. Zwischen zwei Werten wird der nächstgelegene mit ~ angezeigt. Sie können einen Namen oder eine Zahl eingeben.</td></tr>
+  <tr><td>Hard</td><td>Wie hart angeschlagen wird: 0 = ein weicher Schlägel (die hohen Moden klingen kaum), 100 = ein Klick.</td></tr>
+  <tr><td>Decay</td><td>Wie lange der Körper klingt, in Sekunden (bis -60 dB).</td></tr>
+  <tr><td>Inharm</td><td>Unter 0 rücken die Moden in Richtung einer harmonischen Reihe (der Körper wird zu einem Ton); über 0 entfernen sie sich weiter voneinander.</td></tr>
+  <tr><td>Damp</td><td>Wie viel schneller die hohen Moden abklingen als die tiefen: 0 = Metall, 100 = Holz oder Karton.</td></tr>
+  <tr><td>Position</td><td>Wo angeschlagen wird: 0 = am Rand (alle Moden), 100 = in der Mitte (jede zweite Mode stumm: hohler).</td></tr>
+  <tr><td>Exciter</td><td><em>Hit</em>: ein Anschlag bei jeder Note. <em>V1-V8</em>: Der Klang dieser Stimme, unabhängig von ihrer Engine, regt den Körper kontinuierlich an (schalten Sie diese Stimme stumm, um nur den Körper zu hören). Die eigene Stimme oder Impact-Stimmen, die sich in einer Schleife gegenseitig anregen: kein Eingang.</td></tr>
+  <tr><td>Input</td><td>Wie stark die Anregungsstimme den Körper antreibt (nur bei V1-V8).</td></tr>
+  <tr><td>Pitch</td><td>Größe des Körpers, in Halbtönen relativ zur Note. Hz-Modus: die erste Mode auf einer festen Frequenz (sinnvoll etwa von 40 Hz bis 3 kHz).</td></tr>
+  <tr><td>Width</td><td>0: mono. Darüber: Die rechte Seite ist eine leicht verstimmte Kopie des Körpers (doppelte CPU-Last).</td></tr>
+  <tr><td>Modes</td><td>Wie viele Moden klingen: weniger = reiner und schonender für die CPU.</td></tr>
+</table>
+
+<h3 id="eng-chaos">Chaos</h3>
+<p>Ein dynamisches System, das mit Audiorate läuft und anschließend von zwölf Bändern geformt wird.</p>
+<table>
+  <tr><th>Regler</th><th>Funktion</th></tr>
+  <tr><td>Graph</td><td>Der Attraktor des Systems, wie System und Chaos ihn einstellen (ein Bild, nicht der Klang selbst).</td></tr>
+  <tr><td>System</td><td>Rossler (fast periodisch, am tonalsten), Lorenz (zwei Flügel, plötzliche Umschläge), Duffing (eine angetriebene Feder: weich bis rau), Logistic (eine gestufte Folge: körnig).</td></tr>
+  <tr><td>Chaos</td><td>Von 0 (das System läuft in einer Schleife: ein sauberer Ton) bis 1 (völlig chaotisch: eine rauschende Textur). Dazwischen erscheinen nacheinander Unteroktaven.</td></tr>
+  <tr><td>Rate</td><td>Geschwindigkeit des Systems relativ zur Note, x0,25 bis x4.</td></tr>
+  <tr><td>Out</td><td>Welche Variable zu hören ist: x, y, z oder x+y. Bei Lorenz folgt z der Note am besten.</td></tr>
+  <tr><td>Retrig</td><td>An: Jede Note startet das System am selben Punkt. Aus: Es läuft weiter, keine zwei Noten klingen gleich.</td></tr>
+  <tr><td>Oct, Semi</td><td>Oktave und Halbtöne des Systems relativ zur Note.</td></tr>
+  <tr><td>Smooth</td><td>Ein Tiefpass, der der Note folgt: 0 = das rohe System, 1 = bis hinunter zur Note selbst.</td></tr>
+  <tr><td>Bands</td><td><em>Harm</em>: zwölf schmale Bänder auf den Obertönen 1 bis 12 der Note (das Chaos wird zu einem Ton mit Tonhöhe). <em>Oct</em>: feste Bänder von 40 Hz bis 16 kHz. Zeichnen Sie ihre Pegel in den Bandgraphen.</td></tr>
+  <tr><td>Q</td><td>Schärfe der Bänder, 0,5 bis 30. Bei Harm gilt: höher = sauberere Tonhöhe.</td></tr>
+  <tr><td>Bright</td><td>Macht alle Bänder auf einmal heller (+) oder dunkler (-), in dB pro Oktave.</td></tr>
+  <tr><td>Mix</td><td>Rohes Chaos (0) bis gefiltertes Chaos (1), bei gleichem Pegel.</td></tr>
+  <tr><td>Drive</td><td>Sättigt das System vor den Bändern (mit Oversampling, gleicher Pegel).</td></tr>
+  <tr><td>Stereo</td><td>Eine weitere Variable des Systems wird links addiert und rechts abgezogen: der Attraktor im Raum.</td></tr>
+  <tr><td>Würfel</td><td>Gold: ein spielbares System. Rosa: alles oben Genannte über den gesamten Bereich. Keiner von beiden berührt KeyT, Retrig, Oct, Semi, die gezeichneten Bänder oder Vol.</td></tr>
+</table>
+
+<h3 id="eng-logic">Logic</h3>
+<p>Zwei Rechteckwellen, A und B, die ein Logikgatter zu einem einzigen Bit verknüpft.</p>
+<table>
+  <tr><th>Regler</th><th>Funktion</th></tr>
+  <tr><td>Graph</td><td>Ein Zyklus von A und B und was das Gatter daraus macht.</td></tr>
+  <tr><td>A, B</td><td>Klicken Sie auf den Buchstaben, um ein Rechteck ein- oder auszuschalten (ist eines aus, spielt das andere allein).</td></tr>
+  <tr><td>Oct, Semi</td><td>Tonhöhe jedes Rechtecks relativ zur Stimme (Hz-Modus bei Semi).</td></tr>
+  <tr><td>KeyT</td><td>Pro Rechteck. Lassen Sie A auf 100 und senken Sie B: Das Gatter schwebt bei jeder Note in gleichbleibendem Tempo – eine Sequenz oder ein Grain.</td></tr>
+  <tr><td>PW</td><td>Pulsbreite jedes Rechtecks.</td></tr>
+  <tr><td>Gate</td><td>Wie die beiden Rechtecke zu einem Bit verknüpft werden: XOR, XNOR, AND, NAND oder OR.</td></tr>
+  <tr><td>Fine</td><td>Verstimmt B in Cent: die Schwebung, die den Klang in Bewegung bringt.</td></tr>
+  <tr><td>Soft</td><td>Rundet die Flanken ab: ein Tiefpass, der der Note folgt.</td></tr>
+  <tr><td>Würfel</td><td>Gold: ein spielbares Paar (A nahe der Note, B auf einem musikalischen Intervall). Rosa: Oct, Semi, PW, Gate, Fine und Soft beliebig.</td></tr>
+</table>
+
+<h3 id="eng-shard">Shard</h3>
+<p>Bis zu vier Wavetables, die sich in kurzen Stücken („Shards“) abwechseln, wobei jedes am Anfang seiner Tabelle neu startet. Die Note ist
+durch die Neustarts zu hören; die Tabellen liefern die Textur.</p>
+<table>
+  <tr><th>Regler</th><th>Funktion</th></tr>
+  <tr><td>Graph</td><td>Eine Runde Shards nebeneinander, abwechselnd cyan und weiß.</td></tr>
+  <tr><td>Tables 1-4</td><td>Die Tabelle jedes Shards. Klick: eine andere wählen; Rechtsklick: den Ordner Wavetables öffnen oder neu einlesen; seitlich ziehen: durch die Tabelle scannen; Pfeile: die vorherige oder nächste Tabelle.</td></tr>
+  <tr><td>Scan, Oct, Semi, Fine</td><td>Pro Shard: Position in seiner Tabelle und seine Tonhöhe relativ zum Träger (mehr hineingepresste Zyklen: Die Textur ändert sich, die Note bleibt).</td></tr>
+  <tr><td>Duty</td><td>Verbiegt die Form des Shards: wohin seine Mitte fällt (50 % = wie gezeichnet).</td></tr>
+  <tr><td>Level</td><td>Pegel jedes Shards.</td></tr>
+  <tr><td>Num</td><td>Wie viele Shards sich abwechseln, 1 bis 4. 1: Die Tabelle spielt allein, nichts startet neu.</td></tr>
+  <tr><td>Size</td><td>Länge eines Shards in Perioden der Note: 1/64 (Krümel, rau) bis 64 (lange Blöcke).</td></tr>
+  <tr><td>Frac</td><td>Feinlänge, in % von Size. Zwischen runden Werten geraten die Neustarts aus dem Takt der Note: Subharmonische, fremdartige Texturen.</td></tr>
+  <tr><td>Jitter</td><td>Jeder Shard erhält eine zufällige Länge (halb bis doppelt bei 100 %): nur noch die Textur, ohne die Note.</td></tr>
+  <tr><td>Car Oct, Car Semi</td><td>Der Träger: wie schnell jeder Shard seine Tabelle liest (-4 bis +6 Oktaven relativ zur Note). Höher: ein helleres Band; tiefer: körniger.</td></tr>
+</table>
+
+<h3 id="eng-wave">Wave</h3>
+<p>Zwei Wavetable-Oszillatoren, A und B.</p>
+<table>
+  <tr><th>Regler</th><th>Funktion</th></tr>
+  <tr><td>Tabellengraphen</td><td>Jede Tabelle bei ihrem Scan und PW. Klick: eine andere Tabelle wählen; Rechtsklick: den Ordner öffnen oder neu einlesen; seitlich ziehen: scannen; Pfeile: die vorherige oder nächste Tabelle.</td></tr>
+  <tr><td>A, B</td><td>Klicken Sie auf den Buchstaben, um eine Tabelle ein- oder auszuschalten (aus: nicht berechnet, ihr Vol bleibt erhalten). B ist standardmäßig stumm (Vol auf -inf).</td></tr>
+  <tr><td>Scan</td><td>Position in der Tabelle.</td></tr>
+  <tr><td>Oct, Semi, Fine</td><td>Tonhöhe der Tabelle relativ zur Stimme. Hz-Modus bei Semi: ein fester Takt, der die Note ignoriert.</td></tr>
+  <tr><td>PW</td><td>0: die Tabelle wie gezeichnet. Richtung 0,5 höhlt ein Kammfilter die geradzahligen Obertöne aus (bei 0,5 alle verschwunden).</td></tr>
+  <tr><td>KeyT, Pan, Vol</td><td>Pro Tabelle.</td></tr>
+</table>
+<p>Eigene Tabellen: Legen Sie WAV-Dateien in <code>Documents\Comma\Wavetables</code> ab (Frames zu 2048 Samples oder Tabellen im Serum-Format;
+bis zu 256 Frames), auf Wunsch in Unterordnern, dann Rechtsklick auf einen Tabellengraphen &rarr; <em>Rescan folder</em>. Auch Capture kann Tabellen erzeugen (siehe
+<a href="#pg-capture">Capture</a>).</p>
+
+<h3 id="eng-sample">Sample</h3>
+<p>Liest eine WAV-Datei, als Wolke von Grains oder einmal pro Note.</p>
+<table>
+  <tr><th>Regler</th><th>Funktion</th></tr>
+  <tr><td>Dateiliste</td><td>Die WAV-Dateien der Sample-Bibliothek, nach Unterordnern. Goldener Würfel: eine andere Datei; rosa Würfel: die Grain-Einstellungen beliebig.</td></tr>
+  <tr><td>Graph</td><td>Die Datei. Grain: Position (Linie) und die Streuung von Spray. One-shot: in Cyan, was gespielt wird. Klick: die Dateiliste; seitlich ziehen: Position.</td></tr>
+  <tr><td>Mode</td><td><em>Grain</em>: Grains werden rund um Position gelesen. <em>One-shot</em>: Die Datei spielt einmal pro Note ab Start über Length und wird dann ausgeblendet.</td></tr>
+  <tr><td>Position (Start)</td><td>Wo das Lesen beginnt, in %.</td></tr>
+  <tr><td>Scan</td><td>Grain: wie schnell das Lesen vorrückt (1 = Echtzeit, 0 = eingefroren, unter 0 = rückwärts).</td></tr>
+  <tr><td>Spray</td><td>Grain: zufälliger Versatz jedes Grains (0 = sauber, 100 % = irgendwo in der Datei).</td></tr>
+  <tr><td>Grain, Density</td><td>Grain: Länge jedes Grains (ms) und Grains pro Sekunde.</td></tr>
+  <tr><td>Length, Fade</td><td>One-shot (anstelle von Scan und Spray): wie viel gespielt wird und die Ausblendung am Ende.</td></tr>
+  <tr><td>Pitch, KeyT</td><td>Auf C4 spielt die Datei in ihrer eigenen Tonhöhe. KeyT 0: Sie behält die Tonhöhe der Datei.</td></tr>
+  <tr><td>Detune</td><td>Zufällige Verstimmung jedes Grains (ein Chorus, dann ein Schwarm). One-shot: Links und rechts driften auseinander.</td></tr>
+  <tr><td>Reverse</td><td>Anteil der rückwärts gespielten Grains. One-shot: Über 50 % wird der Abschnitt rückwärts gespielt.</td></tr>
+  <tr><td>Width</td><td>Verteilt die Grains (oder die beiden One-shot-Lesevorgänge) im Stereobild.</td></tr>
+  <tr><td>Gain</td><td>Verstärkung vor Vol, um eine Datei anzugleichen, die lauter oder leiser ist als die anderen. One-shot: Die Datei spielt mit ihrem eigenen Pegel (0 dB = wie aufgenommen).</td></tr>
+</table>
+<p>Eigene Klänge: Legen Sie WAV-Dateien in <code>Documents\Comma\Samples</code> ab (beliebige WAV-Dateien; mono gelesen, bis zu 30 s), auf Wunsch in Unterordnern. Die Listen lesen den
+Ordner bei jedem Öffnen neu ein; <em>Samples</em> in ihrer rechten Spalte öffnet ihn. Dieselbe Bibliothek speist Sample, Noise im Modus Sample und die Attack-Ebene.</p>
+
+<h3 id="eng-noise">Noise</h3>
+<p>Ein Rauschgenerator aus Impulsen, mit einem resonanten Band auf der Note.</p>
+<table>
+  <tr><th>Regler</th><th>Funktion</th></tr>
+  <tr><td>Kategorienliste</td><td>Noise-Rezepte nach Kategorie. Goldener Würfel: eine andere Kategorie derselben Familie; rosa: der ganze Generator beliebig.</td></tr>
+  <tr><td>Graph</td><td>Was der Generator erzeugt, vor dem Band. Klick: die Liste der Klänge.</td></tr>
+  <tr><td>Mode</td><td><em>Impulse</em>: ein Impulsregen. <em>LFSR</em>: digitales Rauschen. <em>Metal</em>: ein metallischer Klang, mit Tonhöhe, wenn Jitter auf 0 steht. <em>Sample</em>: eine WAV-Datei der Bibliothek, in Schleife (Speed ersetzt Density). <em>Paper</em>: Knistern, das eine auf die Note gestimmte Faser anregt – zerknülltes Papier, Shaker.</td></tr>
+  <tr><td>Density</td><td>Impulse pro Sekunde: von einzelnem Knistern bis zu durchgehendem Rauschen. Modus Sample: ersetzt durch Speed, die Wiedergabegeschwindigkeit in Halbtönen.</td></tr>
+  <tr><td>Jitter</td><td>0 %: gleichmäßige Impulse (ein Brummen). 100 %: zufälliges Timing, Vorzeichen und Stärke (Rauschen). Paper: auch, wie ungleichmäßig das Knistern ist. Keine Wirkung im Modus Sample.</td></tr>
+  <tr><td>Grain</td><td>Länge jedes Impulses: von einem trockenen Klick bis zu Tropfen. LFSR und Metal: eine Glättung bis 10 ms. Keine Wirkung im Modus Sample.</td></tr>
+  <tr><td>Color</td><td>Neigung des Spektrums: Brown, Pink, White, Blue, Violet (oder alles dazwischen). Paper: der Körper der Faser, von Karton (Brown) bis Zellophan (Violet).</td></tr>
+  <tr><td>Width</td><td>0 %: dasselbe Rauschen links und rechts; 100 %: zwei unabhängige Rauschsignale.</td></tr>
+  <tr><td>Clusters</td><td>Gruppiert die Impulse zu Salven und Pausen, ohne ihre Anzahl zu ändern. Jede Note beginnt in einer Salve. Modus Sample: zerschneidet die Datei in Salven.</td></tr>
+  <tr><td>Loop, Length</td><td>Spielt wieder ab, was eine Length zuvor herauskam (in Perioden der Note). Loop 100 %: Es friert ein – bei Length 1 ein Ton mit Rauschklangfarbe. Im Modus Paper nicht verwendet.</td></tr>
+  <tr><td>Band, Pitch, Res</td><td>Ein resonantes Band auf der Note: wie stark (0 = aus, 100 % = nur das Band), wo (Halbtöne oder Hz-Modus), wie schmal (von gefärbtem Rauschen bis zum Pfeifen). Paper: Band bestimmt, wie viel durch die Faser geht, Res, ob sie zerknüllt klingt oder singt.</td></tr>
+</table>
+
+<h3 id="eng-empty">Empty</h3>
+<p>Keine Engine: Die Stimme ist stumm und berechnet nichts. Ihre Seiten zeigen „Empty slot: no engine.“</p>
+
+<!-- ============================================================ -->
+<h2 id="pages">8. Die Stimmenseiten</h2>
+<p>Die Zeile unter den Haupt-Tabs wählt, was jeder Stimmenkörper anzeigt. Die Seiten folgen dem Signal der Stimme von links nach rechts:
+Engine (mit Attack und PM) &rarr; Diss &rarr; Warp &rarr; Mangle &rarr; Pluck, Motion, Spectron, Capture &rarr; Env &rarr; Punch. Die meisten Seiten gelten
+<strong>pro Stimme</strong>; Motion und Capture werden von allen Stimmen <strong>gemeinsam genutzt</strong> (dieselben Einstellungen erscheinen in jeder Zeile).
+PM gibt es für Add, Wave, Logic und Shard; eine Seite, die für eine Engine nicht gilt, zeigt „Not available for this engine, for now.“</p>
+
+<h3 id="pg-attack">Attack</h3>
+<figure><img src="img/page-attack.webp" alt="Seite Attack"></figure>
+<p>Eine One-shot-Datei pro Stimme, die bei jeder Note zusätzlich zu ihrer Engine gespielt wird: ein Klick, ein Schlag, ein gefärbter Anschlag.</p>
+<table>
+  <tr><th>Regler</th><th>Funktion</th></tr>
+  <tr><td>Dateiliste</td><td>Die One-shot-Dateien. <em>Off</em>: Die Ebene ist stumm. Goldener Würfel: eine andere Datei; rosa: Start, Length, Fade und Pitch.</td></tr>
+  <tr><td>Graph</td><td>Die Datei und in Cyan, was auf C4 gespielt wird. Seitlich ziehen: Start.</td></tr>
+  <tr><td>Start, Length, Fade</td><td>Wo die Wiedergabe beginnt, wie viel gespielt wird, die Ausblendung am Ende.</td></tr>
+  <tr><td>Route</td><td><em>Post</em>: nach der Stimmenhüllkurve hinzugefügt, ohne ihre Effekte – der Klick bleibt auch bei langsamem Attack vollständig. <em>Pre</em>: vor ihren Effekten und Warps mit der Engine gemischt – er übernimmt die Färbung und die Hüllkurve der Stimme. Die Seite Punch formt auch die Post-Ebene.</td></tr>
+  <tr><td>Pitch, KeyT</td><td>Auf C4 spielt die Datei in ihrer eigenen Tonhöhe; KeyT 0 hält sie dort.</td></tr>
+  <tr><td>Gain, Vol</td><td>Verstärkung, um die Datei nach Gehör anzugleichen (0 dB = die Datei wie aufgenommen), dann der Pegel der Ebene.</td></tr>
+  <tr><td>Filter, Cut, Res</td><td>Off, LP, BP oder HP auf der Ebene; Grenzfrequenz in Halbtönen relativ zur Stimme (Hz-Modus über die Beschriftung). Ein schmaler BP macht aus einem Klick ein Ping.</td></tr>
+</table>
+
+<h3 id="pg-pm">PM -- Phasenmodulation</h3>
+<figure><img src="img/page-pm.webp" alt="Seite PM"></figure>
+<p>Zwei Modulatoren verschieben die Phase der Stimme: Um jeden herum entstehen neue Teiltöne. Pro Stimme.</p>
+<table>
+  <tr><th>Regler</th><th>Funktion</th></tr>
+  <tr><td>Amount</td><td>Stärke der Modulation. 0 = aus, nichts wird berechnet.</td></tr>
+  <tr><td>Ratio</td><td>Frequenz des Modulators, als Vielfaches der Tonhöhe der Stimme. Ganze Zahlen: Die neuen Teiltöne fallen auf die harmonische Reihe. Dazwischen: Glocke, Metall.</td></tr>
+  <tr><td>Fine</td><td>Verstimmt den Modulator, in % seiner Frequenz: Die neuen Teiltöne schweben.</td></tr>
+  <tr><td>Focus</td><td>(Nur Add) Welche Teiltöne moduliert werden: -1 = nur die tiefen, +1 = nur die hohen.</td></tr>
+  <tr><td>KeyT</td><td>Ganz oben: Die Modulatoren folgen der Note (überall dieselbe Klangfarbe). 0: eine feste Frequenz, für Perkussion.</td></tr>
+  <tr><td>Mix</td><td>Mischt jeden modulierten Teilton mit dem unmodulierten. 100 % = reine PM; um 50 % löschen sich Teiltöne aus und kehren zurück.</td></tr>
+  <tr><td>Amount 2, Ratio 2, Fine 2</td><td>Der zweite Modulator. Er verschiebt dieselbe Phase: Die neuen Teiltöne beider Modulatoren verbinden sich. Er teilt KeyT und Mix.</td></tr>
+  <tr><td>Init</td><td>Setzt alle PM-Einstellungen dieser Stimme auf ihren Standardwert zurück.</td></tr>
+</table>
+
+<h3 id="pg-diss">Diss -- die Dissonanzschaltung</h3>
+<figure><img src="img/page-diss.webp" alt="Seite Diss"></figure>
+<p>Rückt die Teiltöne von der harmonischen Reihe weg. Der Graph zeigt, was die Stimme spielt (bei Add verlassen die Balken das harmonische Raster).</p>
+<table>
+  <tr><th>Regler</th><th>Funktion</th></tr>
+  <tr><td>Dissonance</td><td>Schaltet die Schaltung dieser Stimme ein oder aus. Aus: Die Teiltöne der Stimme bleiben harmonisch.</td></tr>
+  <tr><td>Type</td><td>Harmonic, Semitone, Metal, PitchShift oder FreqShift.</td></tr>
+  <tr><td>Amount</td><td>Stärke. Harmonic: Über 1 rücken die Teiltöne auseinander, unter 1 rücken sie zusammen, 1 = unverändert. Metal, Pitch Shift, Freq Shift: skaliert, was Pitch einstellt.</td></tr>
+  <tr><td>Pitch</td><td>Hängt vom Typ ab. Harmonic: zusätzliche Spreizung, die mit der Ordnungszahl des Teiltons wächst. Semitone: Rastergröße, 12 bis 31 Töne pro Oktave. Metal: Steifigkeit. Pitch Shift: &plusmn;24 Halbtöne. Freq Shift: &plusmn;500 Hz.</td></tr>
+  <tr><td>Blend</td><td>Wie stark die Schaltung angewendet wird: 0 = harmonisch, unabhängig von den anderen Einstellungen.</td></tr>
+  <tr><td>Init</td><td>Setzt alle Diss-Einstellungen dieser Stimme auf ihren Standardwert zurück. Der Schalter Dissonance bleibt.</td></tr>
+</table>
+<p>Bei anderen Engines als Add wirkt die Schaltung nach der Engine, als Shifter.</p>
+
+<h3 id="pg-warp">Warp</h3>
+<figure><img src="img/page-warp.webp" alt="Seite Warp"></figure>
+<p>Zwei Warp-Slots pro Stimme, nach ihrer Engine; Warp 2 folgt auf Warp 1. Die Tabs <span class="ui">Warp 1</span> und
+<span class="ui">Warp 2</span> links zeigen jeweils einen Slot (jede Stimme merkt sich ihren eigenen); der Punkt eines Tabs leuchtet, wenn sein Slot
+nicht auf Off steht. Klicken Sie auf den Titel WARP 1 / WARP 2, um einen Slot ein- oder auszuschalten (seine Einstellungen bleiben erhalten).</p>
+<table>
+  <tr><th>Regler</th><th>Funktion</th></tr>
+  <tr><td>Graph</td><td>Die Kurve des Warps: Eingang waagerecht, Ausgang senkrecht.</td></tr>
+  <tr><td>Mode</td><td>Fold, Drive, Rect, Crush: die Stimme allein. RM, AM, Gate: mit der Quelle multipliziert. Min: der kleinere der beiden Werte. Div: die Stimme durch die Quelle geteilt, gezähmt.</td></tr>
+  <tr><td>Source</td><td>Was RM, AM, Gate, Min und Div lesen: diese Stimme (Self), eine andere Stimme oder den Sub. Eine als Quelle genutzte Stimme läuft weiter, auch wenn sie stummgeschaltet ist.</td></tr>
+  <tr><td>Amount</td><td>Vom Originalklang (0) bis zum verformten Klang (100 %).</td></tr>
+  <tr><td>Shape</td><td>Die Einstellung des Modus: wie weit (Fold...Crush), wie hart die Quelle ist (RM, AM, Gate), der Charakter (Min, Div).</td></tr>
+  <tr><td>Rank, Width</td><td>Ein Band, in Obertönen der Stimme (es folgt der Note), und seine Breite.</td></tr>
+  <tr><td>Depth</td><td>0: kein Band, der ganze Klang wird verformt. Bis 96 dB: Nur das Band wird verformt.</td></tr>
+  <tr><td>Out</td><td>Außerhalb des Bandes: die Stimme unverändert lassen (<em>Keep</em>) oder abschneiden (<em>Cut</em>; bei Amount 100 % ist nur das verformte Band zu hören).</td></tr>
+  <tr><td>Würfel</td><td>Jeder Slot hat sein eigenes Paar. Gold: ein spielbarer Warp (ein echter Modus, gezähmte Werte für Amount und Shape, ein Band auf einem Oberton, Keep). Rosa: alle Modi, Quellen und Band-Einstellungen, Off und Cut eingeschlossen. Rechtsklick: zurück zum Zustand dieses Slots vor dem Wurf. Der goldene Würfel des Stimmenkopfs würfelt beide Slots.</td></tr>
+  <tr><td>Init</td><td>Setzt alle Warp-Einstellungen dieser Stimme auf ihren Standardwert zurück: beide Slots, egal welcher angezeigt wird. Ihr Ein/Aus bleibt.</td></tr>
+</table>
+
+<h3 id="pg-mangle">Mangle</h3>
+<figure><img src="img/page-mangle.webp" alt="Seite Mangle, Block Mod"><figcaption>Die Seite Mangle von V1, Block Mod.</figcaption></figure>
+<p>„Etwas, das alles zerlegt“: fünf Blöcke pro Stimme, nach den Warps und vor der Stimmenhüllkurve, für jede Engine. Jeder
+Block hat seinen eigenen Schalter und ist <strong>standardmäßig aus</strong> (ausgeschaltet berechnet er nichts). Die Tabs links zeigen jeweils einen Block
+(jede Stimme merkt sich ihren eigenen); der Punkt eines Tabs leuchtet, wenn sein Block bei dieser Stimme eingeschaltet ist. Jeder Block hat einen goldenen Würfel
+(spielbare Einstellungen) und einen rosa Würfel (beliebig); beide schalten den Block ein, Rechtsklick macht den Wurf rückgängig. <span class="ui">Init</span> setzt alle Mangle-Einstellungen dieser Stimme auf ihren
+Standardwert zurück: alle fünf Blöcke, egal welcher angezeigt wird. Ihre Schalter und die Shaper-Kurve bleiben.</p>
+<p>Modulierbar (Bereich <em>Mangle</em> des Zielmenüs, für alle Stimmen auf einmal oder Stimme für Stimme): Mod Ratio, Hz, AM, Pan und
+Drive; Disperse Freq, Sweep, Rate und Mix; Stutter Chance und Speed; Rate Ratio, Hz und Mix; Shaper Drive und Mix.</p>
+<p>Der Klang durchläuft die Blöcke in fester Reihenfolge: <strong>Stutter &rarr; Shaper &rarr; Rate &rarr; Mod &rarr; Disperse</strong>.</p>
+<table>
+  <tr><th>Block</th><th>Regler</th><th>Funktion</th></tr>
+  <tr><td rowspan="6">Mod</td><td>Mod</td><td>Ein Oszillator im Audiobereich bewegt Pegel, Panorama und Drive der Stimme: Seitenbänder, Schnarren, Körnigkeit.</td></tr>
+  <tr><td>Ratio / Hz</td><td>Seine Frequenz als Verhältnis zur Note der Stimme (x0,25 bis x16: die Seitenbänder folgen der Tastatur) oder, nach einem Klick auf die Beschriftung, eine feste Frequenz (0,5 Hz bis 5 kHz: unter 20 Hz ein Tremolo, darüber ein Knurren oder ein Ringmodulator-Klang).</td></tr>
+  <tr><td>Shape</td><td>Sine (weich), Triangle (etwas heller), Square (hartes Umschalten, schnarrend), S&amp;H (bei jedem Zyklus ein neuer Zufallswert).</td></tr>
+  <tr><td>AM</td><td>Wie stark sich der Pegel bewegt: 0 = gleichbleibend, 100 % = von Stille bis voll. Über die Stimme hinaus wird nichts hinzugefügt.</td></tr>
+  <tr><td>Pan</td><td>Wie weit sich die Stimme zwischen links und rechts bewegt, im Tempo des Oszillators.</td></tr>
+  <tr><td>Drive</td><td>Eine Sättigung, deren Härte dem Oszillator folgt: Die Körnigkeit pulsiert mit ihm. Der Pegel bleibt erhalten.</td></tr>
+  <tr><td rowspan="6">Disperse</td><td>Stages</td><td>8, 16 oder 32 Allpass-Stufen: von einem leichten Verschmieren bis zu einem langen Laser-Zirpen (32 kostet viermal so viel wie 8).</td></tr>
+  <tr><td>Freq</td><td>Die Mitte des Verschmierens, 100 Hz bis 8 kHz: Die Frequenzen um sie herum werden am stärksten verzögert.</td></tr>
+  <tr><td>Q</td><td>Niedrig = breit und weich, hoch = ein schärferes, klingelndes Zirpen.</td></tr>
+  <tr><td>Sweep, Rate</td><td>Wie weit sich die Mitte bewegt (bis zu zwei Oktaven in jede Richtung) und wie schnell (0,02 bis 10 Hz): Die Kerben wandern.</td></tr>
+  <tr><td>Mix</td><td>50 % gräbt die tiefsten Kerben (eine Flanger-Färbung), 100 % ist das Verschmieren allein.</td></tr>
+  <tr><td colspan="2">Nicht dasselbe wie das <a href="#fx">Disperse</a> der FX-Leiste: Dieses wirkt pro Stimme, ist kürzer und fährt durch.</td></tr>
+  <tr><td rowspan="5">Stutter</td><td>Every</td><td>Das Raster, im Tempo des Hosts (1/8, 1/4, 1/2, 1 Takt). Bei jedem Schritt entscheidet die Stimme per Zufall, ob sie bis zum nächsten Schritt stottert. Das Raster beginnt mit jeder Note neu.</td></tr>
+  <tr><td>Length</td><td>Das Stück, das sich wiederholt: 1/64 (ein Schnarren) bis 1/8 (eine rhythmische Schleife).</td></tr>
+  <tr><td>Chance</td><td>Wie oft ein Schritt stottert: 0 = nie, 100 % = bei jedem Schritt. Jede Stimme würfelt für sich.</td></tr>
+  <tr><td>Speed</td><td>Wiedergabe des Stücks: x1 unverändert, x0,5 eine Oktave tiefer, x2 eine Oktave höher; unter 0 rückwärts.</td></tr>
+  <tr><td>Mix</td><td>Das wiederholte Stück über der laufenden Stimme: 100 % = nur das Stück, solange sie stottert.</td></tr>
+  <tr><td rowspan="3">Rate</td><td>Ratio / Hz</td><td>Die Stimme wird mit einer niedrigeren Rate abgetastet und zwischen den Abtastwerten gehalten: Stufen und Aliasing. Ratio (x0,5 bis x32 der Note): Das Aliasing bleibt mit der Tastatur gestimmt. Klick auf die Beschriftung: eine feste Rate, 100 Hz bis 24 kHz.</td></tr>
+  <tr><td>Smooth</td><td>Rundet die Stufen ab: 0 = harte Stufen (helles Aliasing), 100 % = weich und dunkel.</td></tr>
+  <tr><td>Mix</td><td>Die reduzierte Stimme über der sauberen.</td></tr>
+  <tr><td rowspan="3">Shaper</td><td>Graph</td><td>Eine Verzerrungskurve, die Sie zeichnen, mit denselben Gesten wie bei der Custom-Kurve des Dist: Klick fügt einen Punkt hinzu, Ziehen verschiebt ihn, der Ring krümmt ein Segment, Doppelklick entfernt ihn. Die Kurve wird mit dem Preset gespeichert.</td></tr>
+  <tr><td>Drive</td><td>Wie stark die Stimme in die Kurve getrieben wird: x1 bis x16 (+24 dB). Der beleuchtete Bereich des Graphen zeigt, wie weit sie reicht. Der Pegel bleibt erhalten.</td></tr>
+  <tr><td>Mix</td><td>Die geformte Stimme über der sauberen.</td></tr>
+</table>
+<figure><img src="img/page-mangle-shaper.webp" alt="Seite Mangle, Block Shaper"><figcaption>Der Block Shaper und seine gezeichnete Kurve.</figcaption></figure>
+
+<h3 id="pg-pluck">Pluck</h3>
+<figure><img src="img/page-pluck.webp" alt="Seite Pluck"></figure>
+<p>Zwei Kammfilter, die Kerben in die Teiltöne der Stimme schneiden.</p>
+<table>
+  <tr><th>Regler</th><th>Funktion</th></tr>
+  <tr><td>Amount</td><td>Wie tief die Kerben schneiden, für beide Kammfilter. 0 = aus.</td></tr>
+  <tr><td>Mix</td><td>0 = Pluck allein, 0,5 = beide voll, 1 = Pluck 2 allein.</td></tr>
+  <tr><td>Decay</td><td>Dieselben Kerben im Ausklang: Ein Teilton auf einer Kerbe klingt schneller ab; der Anschlag bleibt vollständig.</td></tr>
+  <tr><td>Mode</td><td><em>Rank</em>: Kerben auf Teiltonnummern, sie folgen der Note (eine gezupfte Saite). <em>Time</em>: Kerben auf festen Frequenzen (ein Flanger). <em>Gauss</em>: eine weiche Glockenkurve, zentriert auf einen Teilton.</td></tr>
+  <tr><td>Pluck, Pluck 2</td><td>Rank: wo die Saite gezupft wird (bei 1/5 fehlt der 5. Teilton). Time: die Verzögerung, 0,1 bis 10 ms. Gauss: die Mitte der Glockenkurve.</td></tr>
+  <tr><td>Width</td><td>Breite der Gauss-Glockenkurve, in Teiltönen.</td></tr>
+  <tr><td>Morph</td><td>Überblendet zwischen Rank und der Gauss-Glockenkurve. Keine Wirkung bei Time.</td></tr>
+  <tr><td>Init</td><td>Setzt alle Pluck-Einstellungen dieser Stimme auf ihren Standardwert zurück.</td></tr>
+</table>
+
+<h3 id="pg-motion">Motion</h3>
+<figure><img src="img/page-motion.webp" alt="Seite Motion"></figure>
+<p>Was die Teiltöne zeitlich verändert. Gemeinsam für alle Stimmen.</p>
+<table>
+  <tr><th>Regler</th><th>Funktion</th></tr>
+  <tr><td>Drift</td><td>Langsames Wandern der Tonhöhe jedes Teiltons, in Cent (bis zu einer Oktave). Ein paar Cent: Der Klang lebt. Über einen Halbton: Die Obertöne lösen sich in eine Wolke auf. 0 = aus.</td></tr>
+  <tr><td>Rate</td><td>Geschwindigkeit der Drift, 0,02 bis 4 Hz.</td></tr>
+  <tr><td>Focus</td><td>Verteilt die Drift über das Spektrum: +1 der Grundton bleibt still und die Höhen bewegen sich doppelt so stark; -1 umgekehrt.</td></tr>
+  <tr><td>Rand, mode</td><td><em>Periodic</em>: Jeder Teilton wandert auf einer langsamen Sinuskurve. <em>Random</em>: Er gleitet zwischen zufälligen Zielen; Rand bestimmt die Größe der Bewegungen.</td></tr>
+  <tr><td>Bloom</td><td>Jeder Teilton atmet im Pegel (von Stille bis doppelt so laut am oberen Ende), der mittlere Pegel bleibt unverändert.</td></tr>
+  <tr><td>Rate, Focus (Bloom)</td><td>Geschwindigkeit (0,02 bis 8 Hz) und Verteilung des Bloom (+1 = die Höhen atmen, der Grundton bleibt).</td></tr>
+  <tr><td>Damp</td><td>Wie schnell die hohen Teiltöne loslassen. Die Note wird nicht kürzer; nur ihre Höhen klingen zuerst ab.</td></tr>
+  <tr><td>Curve</td><td>Wie Damp mit der Ordnungszahl des Teiltons wächst: 1 = proportional (eine Saite), 2 = quadratisch (viel dumpfer).</td></tr>
+  <tr><td>Darken</td><td>Die hohen Teiltöne durchlaufen die Hüllkurve schneller: am oberen Ende läuft Teilton n n-mal schneller als der Grundton.</td></tr>
+  <tr><td>Spread</td><td>Staffelt den Einsatz der Teiltöne, in ms. Positiv: die Höhen zuerst; negativ: die Tiefen zuerst.</td></tr>
+</table>
+
+<h3 id="pg-spectron">Spectron</h3>
+<figure><img src="img/page-spectron.webp" alt="Seite Spectron"></figure>
+<p>Eine Verstärkungskurve, die Sie über das Spektrum zeichnen und die auf die Teiltöne der Stimme angewendet wird. Sie reicht von &minus;60 dB bis +12 dB. Hebt man einen Bereich an, sinkt der ganze Klang, damit der Pegel nicht steigt; das Absenken eines Bereichs wird nicht ausgeglichen: Was Sie herausnehmen, bleibt draußen.</p>
+<table>
+  <tr><th>Regler</th><th>Funktion</th></tr>
+  <tr><td>Graph</td><td>Klicken, um einen Punkt hinzuzufügen, ziehen, um ihn zu verschieben, den Ring in der Mitte eines Segments ziehen, um es zu krümmen, Doppelklick auf einen Punkt, um ihn zu entfernen. Rechtsklick: das Fangraster.</td></tr>
+  <tr><td>Bank</td><td>Die Spectron-Kurven: Wählen Sie eine, um sie zu laden. Goldener Würfel: eine Kurve aus der Bank; rosa Würfel: eine neue Kurve (3 bis 8 Punkte, &plusmn;12 dB).</td></tr>
+  <tr><td>Spectron</td><td>Schaltet die Kurve für diese Stimme ein oder aus.</td></tr>
+  <tr><td>Amount</td><td>Wie stark die Kurve angewendet wird: 0 = gar nicht, 1 = vollständig.</td></tr>
+  <tr><td>Shift</td><td>Verschiebt die ganze Kurve entlang der Frequenzachse, in Oktaven.</td></tr>
+  <tr><td>KeyT</td><td>0: Die Kurve steht fest in Hz (ein Instrumentenkorpus). 1: Sie wandert mit der Tastatur.</td></tr>
+  <tr><td>A / B</td><td>Zwei Kurven pro Stimme. Der Tab wählt die, an der Graph, Bank und Würfel arbeiten; die andere wird blass gezeichnet.</td></tr>
+  <tr><td>Morph</td><td>Von Kurve A (0) zu Kurve B (1). Bei gleicher Punktzahl gleitet jeder Punkt an seinen Platz in B: Zeichnen Sie zwei Vokale (die Bank enthält Vowel A, E, I, O, U), und der Klang spricht. Ein Modulationsziel (Spectron Morph).</td></tr>
+  <tr><td>Zoom</td><td>Die Breite in Oktaven, auf die die ganze Zeichnung wirkt (10: das ganze Spektrum). Darunter wird die Zeichnung in ein schmales Fenster gestaucht, außerhalb neutral, das Shift wie eine Resonanz durchfährt. Die blasse Linie im Graphen ist das, was spielt.</td></tr>
+</table>
+
+<h3 id="pg-capture">Capture</h3>
+<figure><img src="img/page-capture.webp" alt="Seite Capture"></figure>
+<p>Fotografiert, was die Effektkette mit dem Spektrum macht, und legt diesen Abdruck dann auf die Teiltöne. Gemeinsam für alle Stimmen.</p>
+<table>
+  <tr><th>Regler</th><th>Funktion</th></tr>
+  <tr><td>Anzeige</td><td>Das gespeicherte Foto über seine 16 erfassten Momente.</td></tr>
+  <tr><td>Snap</td><td>Nimmt ein neues Foto auf (über Length). Kann vom Host als <em>Capture Snap</em> automatisiert werden.</td></tr>
+  <tr><td>Capture</td><td>An: Das Foto wird angewendet. Aus: behalten, aber nicht angewendet. Einschalten ohne Foto nimmt eines auf. Leuchtet = angewendet, Punkt = ein Foto ist gespeichert, weißer Blitz = gerade aufgenommen. Kein Blitz und kein Punkt: Das Spektrum war zu flach – spielen Sie zuerst mit den Effekten (Lush, Cloud, Reverb, Dist).</td></tr>
+  <tr><td>To Table</td><td>Wandelt das Foto in eine Wavetable um (Scan fährt durch die 16 Momente), die unter dem von Ihnen vergebenen Namen im Ordner Wavetables gespeichert wird, für eine Wave-Stimme.</td></tr>
+  <tr><td>Amount</td><td>0 = gar nicht, 1 = wie fotografiert, bis 3 = übertrieben.</td></tr>
+  <tr><td>Length</td><td>Die fotografierte Zeitspanne. Stellen Sie sie vor der Aufnahme ein.</td></tr>
+  <tr><td>Shift</td><td>Bewegt sich durch die fotografierte Zeit, vom ältesten zum neuesten Moment: ein Durchlauf der Klangfarbe, nicht der Tonhöhe.</td></tr>
+  <tr><td>Chunk</td><td>Springt in Stücken dieser Länge durch die 16 Momente (0 = gleitend; 20 ms: ein spektrales Slapback; 2 s: ein langsames Morphing).</td></tr>
+  <tr><td>Focus</td><td>1: das Foto, wie es ist. Höher: Nur seine Spitzen bleiben.</td></tr>
+  <tr><td>Retrig</td><td>Entzündet bei jedem Chunk die Teiltöne neu, die Damp gelöscht hat: ein kleiner heller Anschlag auf jedem Schritt. Braucht Capture an, einen Chunk und etwas Damp (Seite Motion). 0 = kein Anschlag, 1 = voll.</td></tr>
+  <tr><td>Init</td><td>Zurück auf null: alle Capture-Einstellungen auf ihren Standardwert, Capture aus, und das Foto wird gelöscht.</td></tr>
+</table>
+<p>Das Foto wird mit dem Preset gespeichert.</p>
+
+<h3 id="pg-env">Env -- Hüllkurven und Phasen</h3>
+<figure><img src="img/page-env.webp" alt="Seite Env"></figure>
+<p>Die Amplitudenhüllkurve jeder Stimme, unabhängig von ihrer Engine, ihre Startphasen und ihre Tonhöhenhüllkurve.</p>
+<table>
+  <tr><th>Regler</th><th>Funktion</th></tr>
+  <tr><td>Hüllkurvengraph</td><td>Ziehen Sie die Punkte: Attack und Release waagerecht (Zeit), das Ende von Decay waagerecht und senkrecht (Sustain), das Plateau senkrecht. Mausrad oder Rechtsklick: die Krümmung der Segmente. <kbd>Ctrl</kbd>: feine Schritte. Die Zahlen lauten A / D / S / R / Krümmung. Legen Sie eine Modulationsquelle auf Attack oder Decay ab, um sie zu modulieren. Der Attack-Punkt bewegt sich auch nach oben und unten: der <em>Gipfel</em>, den der Anstieg erreicht (Peak, 1 = voll). Liegt er unter dem Sustain, steigt die Hüllkurve danach wieder zu ihm an. Er formt nur die Hüllkurve; die Seite Punch zähmt den Anschlag im Klang selbst.</td></tr>
+  <tr><td>Link</td><td>Verknüpfte Hüllkurven bewegen sich gemeinsam: Ändern Sie eine, folgen die anderen. Eine neu verknüpfte Stimme erhält die Hüllkurve der bereits verknüpften.</td></tr>
+  <tr><td>Free / Retrig</td><td>Wann die Startphasen der Teiltöne gesetzt werden: erst, wenn der Klang verklungen ist (Free), oder bei jeder Note (Retrig) -- auch bei überlappenden Noten, ohne Klick.</td></tr>
+  <tr><td>Ph Align</td><td>0 = die Phasen, wie sie waren, 1 = genau das Ziel von Ph Curve.</td></tr>
+  <tr><td>Ph Curve</td><td>Form der Startphasen: 0 = alle ausgerichtet (ein scharfer Klick), &plusmn;1 = über die Periode verteilt.</td></tr>
+  <tr><td>Pitch</td><td>Schaltet die Tonhöhenhüllkurve dieser Stimme ein (ihr Graph befindet sich rechts).</td></tr>
+  <tr><td>Tonhöhengraph</td><td>Ein Zap: Bei jeder Note springt die Tonhöhe und fällt dann in Time auf die Nulllinie (in der Mitte) zurück. Ziehen Sie den Startpunkt nach oben oder unten: der Amount, &plusmn;24 Halbtöne über die Höhe des Graphen (über der Linie beginnt die Note höher, darunter tiefer). Der Endpunkt auf der Linie: Time. Mausrad oder Rechtsklick: die Krümmung (0 = gerade, nach oben = ein steilerer Zap). Legen Sie eine Modulationsquelle auf den Startpunkt, um den Amount zu modulieren.</td></tr>
+  <tr><td>Link (Tonhöhe)</td><td>Verknüpft die Tonhöhenhüllkurven der Stimmen und des Sub.</td></tr>
+</table>
+
+<h3 id="pg-transient">Punch</h3>
+<figure><img src="img/page-transient.webp" alt="Seite Punch"></figure>
+<p>Die letzte Stufe jeder Stimme, nach ihrer Hüllkurve und ihrer Attack-Ebene: ein Kompressor, dann zwei Regler, die den Anschlag jeder Note und das, was danach klingt, heben oder zähmen. Attack und Sustain haben keinen Schwellwert: Sie folgen der Form des Klangs, nicht seinem Pegel, und wirken auf einer leisen wie auf einer lauten Stimme gleich.</p>
+<table>
+  <tr><th>Regler</th><th>Funktion</th></tr>
+  <tr><td>Attack</td><td>Der Anschlag, &plusmn;12 dB: eine schnelle Hüllkurve gegen eine langsame. Negativ zähmt eine Perkussion, die aus dem Mix ragt; positiv gibt einem weichen Klang mehr Biss.</td></tr>
+  <tr><td>Sustain</td><td>Was nach dem Anschlag klingt, &plusmn;12 dB, während der Klang abklingt: negativ strafft, positiv verlängert den Ausklang.</td></tr>
+  <tr><td>Comp</td><td>Komprimiert diese Stimme vor Attack und Sustain: Ein einziger Regler senkt den Schwellwert und erhöht die Ratio. Er senkt nur ab, was darüber liegt: Holen Sie den Pegel mit Gain zurück. 0 = aus.</td></tr>
+  <tr><td>Atk</td><td>Wie schnell der Comp den Pegel erfasst, 0,05 bis 50 ms. Kurz: Er erfasst die Spitzen, und der Anschlag wird gezähmt. Ab 5 ms: Der Anschlag kommt zuerst durch, dann wird der Körper niedergehalten, für mehr Biss.</td></tr>
+  <tr><td>Rel</td><td>Wie schnell der Pegel zurückkehrt, 20 bis 1500 ms. Kurz: Er erholt sich zwischen den Spitzen. Ab 500 ms: Er kehrt langsam zwischen den Anschlägen zurück, das Pumpen.</td></tr>
+  <tr><td>Gain</td><td>Holt den Pegel nach dem Comp zurück, bis +24 dB. Nur bei eingeschaltetem Comp.</td></tr>
+  <tr><td>Peak, Pump</td><td>Zwei Ausgangspunkte für den Comp. Sie stellen Atk und Rel ein und sonst nichts; passen Sie diese danach an. Peak (0,05 ms / 50 ms) zähmt die Spitzen; Pump (5 ms / 500 ms) lässt den Anschlag durch und hält den Körper nieder.</td></tr>
+</table>
+<p>Mit Attack, Sustain und Comp auf 0 passiert die Stimme unverändert. Die Attack-Ebene in <em>Post</em> durchläuft die Stufe mit der Stimme.</p>
+
+<!-- ============================================================ -->
+<h2 id="global">9. Global und Sub</h2>
+<h3>Global</h3>
+<figure><img src="img/global.webp" alt="Der Rahmen Global"></figure>
+<table>
+  <tr><th>Regler</th><th>Funktion</th></tr>
+  <tr><td>Pitch</td><td>Transponiert den ganzen Synthesizer, &plusmn;48 Halbtöne. Addiert sich zum Pitchbend.</td></tr>
+  <tr><td>Velocity Amp</td><td>Die Anschlagdynamik bestimmt den Pegel (beim Anschlag erfasst: keine Wirkung auf Legato-Noten).</td></tr>
+  <tr><td>Velocity Bright</td><td>Die Anschlagdynamik hellt das Spektrum auf: härter = mehr Energie in den hohen Teiltönen, bei unverändertem Pegel.</td></tr>
+  <tr><td>Gain</td><td>Der Pegel der Stimmen und des Sub <strong>in die Effekte</strong>. Mit Dist, einem übersteuerten Filter oder Warmth verändert er den Klang. Unity in der Mitte des Regelwegs, +12 dB am Anschlag.</td></tr>
+  <tr><td>V1-V8, Sub-Fader</td><td>Der Pegel jeder Stimme und des Sub. Klick auf die Nummer einer Stimme oder den Namen des Sub schaltet stumm (stummgeschaltet grau); der Kopfhörer unter einem Fader = Solo.</td></tr>
+  <tr><td>Envelope</td><td>Die Master-Hüllkurve: eine Hüllkurve über die gesamte Summe aus Stimmen und Sub, vor den Effekten (Hall- und Delay-Fahnen überdauern sie). Standardmäßig neutral. Wie bei den Stimmen bewegt sich der Attack-Punkt auch nach oben und unten: der <em>Gipfel</em>, den der Anstieg erreicht (Peak).</td></tr>
+  <tr><td>Legato</td><td>An: Eine Note, die gespielt wird, während eine andere gehalten ist, ändert nur die Tonhöhe; die Hüllkurven starten nicht neu.</td></tr>
+  <tr><td>Always / Legato only</td><td>Wann das Glide gleitet: bei jeder Note oder nur bei einer Note, die gespielt wird, während eine andere gehalten ist.</td></tr>
+  <tr><td>Glide</td><td>Jede neue Note gleitet in dieser Zeit von der vorherigen Tonhöhe (bis zu 2 s). Aus: Sie springt.</td></tr>
+</table>
+
+<h3>Sub</h3>
+<figure><img src="img/sub.webp" alt="Die Seite Sub"></figure>
+<p>Ein Oszillator unter der Note, mit eigener Schaltung, außerhalb der acht Stimmen.</p>
+<table>
+  <tr><th>Regler</th><th>Funktion</th></tr>
+  <tr><td>On</td><td>Schaltet den Sub ein oder aus (ein Klick auf den Namen seines Faders bewirkt dasselbe).</td></tr>
+  <tr><td>Wave (Graph)</td><td>Sine, Triangle, Pulse oder Sawtooth. Ziehen Sie den Graphen seitlich, um zu wechseln.</td></tr>
+  <tr><td>Oct, Semi, Fine</td><td>Oktave unter der Note (0 bis -3), Transposition (&plusmn;48 Halbtöne zusätzlich zu Oct), Feinstimmung in Cent.</td></tr>
+  <tr><td>KeyT</td><td>100: folgt der Note. 0: bleibt nahe C4.</td></tr>
+  <tr><td>Vol</td><td>Pegel des Sub.</td></tr>
+  <tr><td>Warmth</td><td>Schaltet die Schaltung des Sub ein: eine Sättigung, dann ein Tiefpass mit 24 dB/Okt. Neutral, bis Sie eine Einstellung ändern.</td></tr>
+  <tr><td>Drive, LP, Res</td><td>Sättigung (keine Wirkung bei Pulse), Tiefpass 30 Hz bis 20 kHz, Resonanz.</td></tr>
+  <tr><td>Envelope / Sub Pitch</td><td>Die Amplitudenhüllkurve des Sub; <span class="ui">Sub Pitch</span> zeigt stattdessen seine Tonhöhenhüllkurve, mit Ein/Aus und Link; wie bei den Stimmen ist sein Startpunkt der Amount. Wie bei den Stimmen bewegt sich der Attack-Punkt auch nach oben und unten: der <em>Gipfel</em>, den der Anstieg erreicht (Peak).</td></tr>
+</table>
+
+<!-- ============================================================ -->
+<h2 id="eqf">10. EQ's/Filters</h2>
+<figure><img src="img/eq-filters.webp" alt="Tab EQ's/Filters"></figure>
+<p>Vier EQs (A-D), vier Filter (F1-F4), Modal und Warmth. Die Leiste links zeigt eine Seite; der Schalter auf jeder Leistenschaltfläche schaltet
+diese Stufe ein oder aus (beim Einschalten öffnet sich auch ihre Seite). Aus: Nichts wird berechnet.</p>
+<p><strong>Ziehen Sie eine Leistenschaltfläche nach oben oder unten, um die Reihenfolge zu ändern</strong>: Der Klang durchläuft diese zehn Module in der Reihenfolge der Liste,
+wohin auch immer sie geroutet sind (eine Reihenfolge für die Stimmen, die Gruppen, Voices und All). Die Standardreihenfolge ist EQ A-D, F1-F4, Warmth, Modal. Die Reihenfolge
+wird mit dem Preset gespeichert.</p>
+<h4>Route</h4>
+<p>Jede Stufe dieses Tabs hat eine <span class="ui">Route</span>:</p>
+<ul>
+  <li><strong>All</strong>: die Stimmen und der Sub zusammen, nach dem Crush.</li>
+  <li><strong>Voices</strong>: alle acht Stimmen, aber nicht der Sub, innerhalb der Stimmen (vor dem Crush).</li>
+  <li><strong>V1-V8</strong>: nur innerhalb dieser Stimme, vor ihrer Lautstärke und Hüllkurve.</li>
+  <li><strong>Group A, B, C</strong>: die Summe der Stimmen dieser Gruppe, nach ihrer Lautstärke und Hüllkurve, vor Voices und dem Crush.</li>
+</ul>
+<p>Die Route öffnet ein Menü mit allen ihren Auswahlen (All, Voices &mdash; Group A, B, C &mdash; V1 bis V8), die aktuelle mit Häkchen.</p>
+<h4>Routing</h4>
+<figure><img src="img/groups.webp" alt="Der Rahmen VOICE GROUPS"><figcaption>Die Schaltfläche Routing öffnet die Matrix ROUTING, darunter VOICE GROUPS.</figcaption></figure>
+<p>Die Schaltfläche <span class="ui">Routing</span> (Tab EQ's/Filters, rechts neben der Presetliste) öffnet die Matrix <strong>ROUTING</strong>: eine Zeile pro
+Modul, in der Reihenfolge der Leiste, und eine Spalte pro Stelle, die es bearbeiten kann (All, Voices, A, B, C, V1-V8). Ein Punkt zeigt, wohin jedes Modul geht.
+Klicken Sie auf eine Zelle, um das Modul dorthin zu routen: Das ist dieselbe Einstellung wie die Route auf seiner Seite. Eine blasse Zeile ist ein ausgeschaltetes Modul; es lässt sich trotzdem routen.</p>
+<h4>Stimmengruppen</h4>
+<p>Unter der Matrix der Rahmen <strong>VOICE GROUPS</strong>: ein Feld
+pro Stimme, <em>None</em>, <em>A</em>, <em>B</em> oder <em>C</em> (Klick schaltet weiter). Eine Stimme gehört höchstens einer Gruppe an. Eine auf
+<em>Group A</em> geroutete Stufe bearbeitet die Stimmen von A gemeinsam, einmal statt einmal pro Stimme: zum Beispiel V1 + V3 + V4 durch einen Filter, V2
+durch einen anderen, V5 unbearbeitet. Eine Gruppe, auf die keine Stufe zielt, existiert nicht: Ihre Stimmen laufen weiter, als hätten sie keine Gruppe. Die Gruppen
+werden mit dem Preset gespeichert.</p>
+
+<h3>EQ A-D</h3>
+<p>Je fünf Bänder: Bell, Low Shelf, High Shelf, High Pass, Low Pass oder Notch.</p>
+<table>
+  <tr><th>Regler</th><th>Funktion</th></tr>
+  <tr><td>Graph</td><td>Ziehen Sie ein Band: waagerecht = Frequenz, senkrecht = Verstärkung (Q bei High Pass, Low Pass und Notch). Mausrad auf einem Bell oder Shelf: dessen Q. Doppelklick: Band ein/aus. Rechtsklick: sein Typ. <kbd>Ctrl</kbd>: feine Schritte. Hinter der Kurve: das Spektrum am Ausgang des EQ. Die Skala endet bei -24 dB, dem tiefsten Wert eines Bandes. Darunter ein Kopfhörer unter jedem eingeschalteten Band: Klicken Sie darauf, um nur den Bereich dieses Bandes zu hören, ein erneuter Klick beendet das. Ganz unten stehen die Frequenzen.</td></tr>
+  <tr><td>Bank</td><td>EQ-Kurven, die alle EQs gemeinsam nutzen, in ihrem Menü nach Familien sortiert (Basic, Presets). Goldener Würfel: eine Kurve aus der Bank; rosa: eine neue Kurve (2 bis 5 Bänder, &plusmn;12 dB).</td></tr>
+  <tr><td>Shift</td><td>Verschiebt alle Bänder gemeinsam, &plusmn;4 Oktaven: fährt die ganze Kurve durch.</td></tr>
+  <tr><td>Gain</td><td>Addiert diese Verstärkung zu jedem Band, das eine hat.</td></tr>
+  <tr><td>Auto</td><td>Automatische Verstärkung: gleicht den mittleren Pegel der Kurve aus (bis &plusmn;12 dB).</td></tr>
+</table>
+
+<h3>F1-F4</h3>
+<p>Jeder Filter ist eine Kette aus bis zu fünf Punkten in Reihe: Bell, Low Shelf, High Shelf, High Pass, Low Pass, Notch, Allpass oder Band Pass.</p>
+<table>
+  <tr><th>Regler</th><th>Funktion</th></tr>
+  <tr><td>Graph</td><td>Ziehen Sie einen Punkt: waagerecht = Frequenz, senkrecht = Verstärkung (Bell, Shelves) oder Q. Mausrad auf einem Bell oder Shelf: dessen Q. Doppelklick: Punkt ein/aus. Rechtsklick: einen Punkt hinzufügen, seinen Typ ändern oder ihn entfernen. <kbd>Ctrl</kbd>: feine Schritte. Hinter der Kurve: das Spektrum am Ausgang des Filters. Die Skala endet bei -24 dB, dem tiefsten Wert eines Punktes. Darunter ein Kopfhörer unter jedem eingeschalteten Punkt: Klicken Sie darauf, um nur den Bereich dieses Punktes zu hören, ein erneuter Klick beendet das. Ganz unten stehen die Frequenzen.</td></tr>
+  <tr><td>F / E</td><td>Zeigt an derselben Stelle die Filterkurve (F) oder ihre Hüllkurve (E).</td></tr>
+  <tr><td>Cut, Res</td><td>Grenzfrequenz und Resonanz des Hauptpunktes (des ersten aktiven); die anderen Punkte folgen: Die ganze Kurve wird durchgefahren.</td></tr>
+  <tr><td>Drive</td><td>Sättigung am Eingang und in der Resonanz jedes Punktes, pegelkompensiert.</td></tr>
+  <tr><td>Mix</td><td>0: ungefiltert. 1: vollständig gefiltert.</td></tr>
+  <tr><td>Amount</td><td>Wie weit die Hüllkurve die Kurve verschiebt: &plusmn;1 = &plusmn;6 Oktaven.</td></tr>
+  <tr><td>Bank</td><td>Filter, die alle Filter gemeinsam nutzen, in ihrem Menü nach Familien sortiert (Basic, Presets). Goldener Würfel: ein Filter aus der Bank; rosa: ein neuer (1 bis 3 Punkte).</td></tr>
+</table>
+
+<h3>Modal</h3>
+<figure><img src="img/modal.webp" alt="Modal"></figure>
+<p>Der Klang schwingt durch die Moden eines angeschlagenen Körpers, der auf die Note gestimmt ist.</p>
+<table>
+  <tr><th>Regler</th><th>Funktion</th></tr>
+  <tr><td>Body</td><td>Tube (nahezu harmonisch), Bell, Bar, Membrane, Plate – dieselben Gesetze wie bei der Engine Impact.</td></tr>
+  <tr><td>Pitch, KeyT</td><td>Stimmt den Körper von der Note weg (&plusmn;24 Halbtöne); wie stark er der Note folgt.</td></tr>
+  <tr><td>Decay</td><td>Wie lange er klingt, 20 ms bis 8 s.</td></tr>
+  <tr><td>Bright</td><td>Gewicht der hohen Moden: 0 = dunkel, 100 = alle gleich.</td></tr>
+  <tr><td>Modes</td><td>Wie viele Moden klingen, 4 bis 24.</td></tr>
+  <tr><td>Mix</td><td>0: ohne Modal. 1: nur der klingende Körper, auf den Pegel des Eingangs zurückgeführt.</td></tr>
+</table>
+
+<h3>Warmth</h3>
+<p>Ein weicher Tiefpass mit 24 dB/Okt, der den Klang wärmer macht: <span class="ui">Cut</span> (40 Hz bis 20 kHz), <span class="ui">Res</span>,
+<span class="ui">Drive</span>, <span class="ui">Mix</span>, eine eigene Hüllkurve (<span class="ui">F / E</span> und <span class="ui">Amount</span>)
+und <span class="ui">Init</span> (alle Einstellungen zurück auf Standard; Ein/Aus und Route bleiben).</p>
+
+<!-- ============================================================ -->
+<h2 id="fx">11. Die FX-Leiste</h2>
+<figure><img src="img/fx-crush.webp" alt="Tab FX, Seite Crush"></figure>
+<p>Der Tab <span class="ui">FX</span> listet die Effekte auf seiner Leiste auf. Klicken Sie auf eine Schaltfläche, um die Seite dieses Effekts anzuzeigen; das Symbol links darauf ist sein Schalter und
+schaltet ihn ein oder aus (beim Einschalten öffnet sich auch die Seite). <strong>Ziehen Sie eine Schaltfläche nach oben oder unten, um die Reihenfolge zu ändern</strong>:
+Der Klang durchläuft die Effekte in der Reihenfolge der Liste. Zwei Sonderplätze: Ganz oben in der Liste kommt Dist vor Warmth; ganz unten kommt
+Sidechain nach Spatial, direkt vor Dynamics.</p>
+<p><span class="ui">FX On / FX Off</span> schaltet alle Effekte gemeinsam stumm, um mit und ohne zu vergleichen (Spatial, Dynamics und der Limiter
+arbeiten weiter). Diese Einstellung wird nicht mit dem Preset gespeichert.</p>
+<p>Unter den Seiten befindet sich der <strong>Ausgangsmonitor</strong>: das Spektrum dessen, was aus Comma herauskommt (mit der Obergrenze des Limiters,
+die Sie ziehen können), ein Stereo-Oszilloskop mit Korrelationsbalken (grün über 0,5, bernsteinfarben über 0, rot darunter) und ein Spektrograph
+mit der Wellenform darüber.</p>
+<p>Der Crush steht immer an erster Stelle; die Standardreihenfolge der übrigen ist: Dist, Filter FX, Disperse, Chorus, Flange, Phaser, Taps, Lush,
+Reverb, Cloud, Delay, Prism, EQ Fx A, EQ Fx B, Sidechain.</p>
+<p><strong>Der Mix der Zeit- und Raumeffekte</strong> (Disperse, Chorus, Flange, Phaser, Taps, Lush, Reverb, Cloud, Delay, Prism) gibt kleinen Dosen den größten Teil
+seines Regelwegs: 0,1 liegt in der Mitte des Drehreglers, 0,5 bei etwa vier Fünfteln. Ein wenig Hall ist leicht einzustellen.</p>
+<p><strong>Band-Felder.</strong> <span class="ui">Band</span> vereint einen Hochpass und einen Tiefpass in einem Feld, von 20 Hz bis 20 kHz, und zeigt den Teil, den es behält.
+Ziehen Sie eine Kante, um sie zu verschieben; ziehen Sie die Mitte, um beide zusammen zu verschieben (eine Kante auf Off bleibt dort, und nur die andere bewegt sich); das Mausrad bewegt die nächstgelegene Kante;
+Doppelklick öffnet beide. Ein auf der linken Hälfte abgelegter Mod zielt auf den HP, auf der rechten Hälfte auf den LP.</p>
+<p><strong>Doppelfelder.</strong> Bei Flange, Phaser, Delay und Prism teilen sich der Notenwert und der freie Wert ein Feld: Klicken Sie auf seine Beschriftung, um
+zwischen Div (in Notenwerten des Host-Tempos) und Rate oder Time zu wechseln. Jeder behält seinen Wert.</p>
+
+<h3>Crush</h3>
+<table>
+  <tr><th>Regler</th><th>Funktion</th></tr>
+  <tr><td>Bitcrush</td><td>Ein / aus.</td></tr>
+  <tr><td>Bits</td><td>Bittiefe, 16 bis hinunter zu 1.</td></tr>
+  <tr><td>Down Sample</td><td>Hält jedes Sample für diese Anzahl von Samples (1 bis 50, auch Bruchwerte): Aliasing, ein Lo-Fi-Klingeln.</td></tr>
+  <tr><td>Mix</td><td>Vom trockenen bis zum vollständig gecrushten Signal.</td></tr>
+  <tr><td>Band, Res</td><td>Hochpass und Tiefpass auf dem gecrushten Klang, vor Mix: Rücken Sie sie zusammen für einen Bandpass. Off an den Enden. Res: die Resonanz beider Kanten, von sanft bis sehr schmal.</td></tr>
+  <tr><td>Bit-Tabelle</td><td>Die 16 Bits, das höchstwertige links: Klicken Sie auf eine Zelle, um dieses Bit auf null zu zwingen (ziehen zum Malen).</td></tr>
+</table>
+
+<h3>Dist</h3>
+<figure><img src="img/fx-dist.webp" alt="Dist mit drei Bändern"></figure>
+<table>
+  <tr><th>Regler</th><th>Funktion</th></tr>
+  <tr><td>Init</td><td>Alle Dist-Einstellungen zurück auf Standard. Ihr Ein/Aus bleibt.</td></tr>
+  <tr><td>Bands, Xover 1-2</td><td>1, 2 oder 3 Bänder, jedes mit eigener Schaltung; die Übergangsfrequenzen (auch im Bandgraphen ziehbar).</td></tr>
+  <tr><td>Schaltungszeile</td><td>Tube, Tape, Diode, Hard, Fold – oder Custom: die Kurve, die Sie in den Graphen des Bandes zeichnen (Zeichnen macht die Schaltung zu Custom).</td></tr>
+  <tr><td>Drive, Char</td><td>Wie stark das Band angefahren wird (bis etwa +30 dB); Char morpht die Schaltung von weich zu hart.</td></tr>
+  <tr><td>Color</td><td>Wie viel von der eigenen Färbung der Schaltung (ihre Filter und ihr Bias) die Kurve umgibt: 0 = die nackte Kurve, 1 = die vollständige Schaltung. Schwach bei Tube, stark bei Diode und Fold.</td></tr>
+  <tr><td>Mix, Level</td><td>Pro Band: trocken bis nass und sein Pegel nach der Schaltung.</td></tr>
+  <tr><td>FB, Time</td><td>Führt den Ausgang des Bandes nach Time (0,1 bis 50 ms) in seine Kurve zurück: eine Färbung, dann ein metallischer Kamm. Hohe Werte können pfeifen.</td></tr>
+  <tr><td>Kopfhörer, Byp</td><td>Dieses Band allein hören; es unbearbeitet durchlassen.</td></tr>
+  <tr><td>Tone</td><td>Tiefpass nach den Schaltungen.</td></tr>
+  <tr><td>Recovery: Speed, Limit</td><td>Der Pegelausgleich hält die Dist so laut wie den trockenen Klang. Speed: wie schnell er folgt, 0,05 bis 5 s (kurz = ein schneller Kompressor; lang = der Punch bleibt und der Ausklang schwillt an). Limit: wie stark er korrigieren darf, 0 bis 24 dB (0 = gar nicht).</td></tr>
+  <tr><td>Out</td><td>Ausgangspegel.</td></tr>
+</table>
+
+<h3>Filter FX</h3>
+<figure><img src="img/fx-filterfx.webp" alt="Filter FX"></figure>
+<p>Derselbe Filter wie F1-F4, in der Leiste platziert. Seine Hüllkurve ist die von F1, mit eigenem <span class="ui">Amount</span>.</p>
+
+<h3>Disperse</h3>
+<p>Eine lange Kette von Allpassfiltern, die auf eine Frequenz gestimmt sind: Jeder Transient wird zu einem „Piou“ gedehnt.</p>
+<table>
+  <tr><th>Regler</th><th>Funktion</th></tr>
+  <tr><td>Freq</td><td>Wo das Piou entsteht, 100 Hz bis 5 kHz.</td></tr>
+  <tr><td>Time</td><td>Länge des Piou bei Freq, 5 bis 150 ms.</td></tr>
+  <tr><td>Q</td><td>Niedrig = breit und weich, hoch = schmal und klingend.</td></tr>
+  <tr><td>Mix</td><td>1: nur der dispergierte Klang. Niedriger: mit dem trockenen Klang gemischt (dazwischen wird daraus ein Phaser).</td></tr>
+</table>
+
+<h3>Chorus</h3>
+<p>Acht kurze Stimmen, die gemeinsam atmen, nie synchron. <span class="ui">Rate</span> (0,02 bis 8 Hz), <span class="ui">Depth</span>,
+<span class="ui">Width</span> (Verteilung der Stimmen), <span class="ui">FB</span> (von einem sauberen Chorus bis zu einem resonanten Flanger),
+<span class="ui">Mix</span> und <span class="ui">Band</span> nur auf den Chorus-Stimmen (der Bass bleibt trocken und mittig).</p>
+
+<h3>Flange und Phaser</h3>
+<p>Der Flanger fährt eine kurze Verzögerung durch, die dem trockenen Klang hinzugefügt wird (der Jet-Effekt); der Phaser fährt eine Kette von Allpassfiltern durch (feinere, rundere Kerben).</p>
+<table>
+  <tr><th>Regler</th><th>Funktion</th></tr>
+  <tr><td>Rate / Div</td><td>Geschwindigkeit des Durchlaufs (0,02 bis 10 Hz) oder in Notenwerten des Host-Tempos: Klicken Sie zum Wechseln auf die Beschriftung.</td></tr>
+  <tr><td>Shape</td><td>Sine, Random (eine neue Tiefe pro Zyklus) oder Triangle.</td></tr>
+  <tr><td>Depth</td><td>Wie weit der Durchlauf reicht (bis zu zwei Oktaven in jede Richtung). 0: stehende Kerben.</td></tr>
+  <tr><td>Manual</td><td>Mitte des Durchlaufs (Flange: 0,1 bis 10 ms Verzögerung; Phaser: 40 Hz bis 6,3 kHz).</td></tr>
+  <tr><td>FB</td><td>Tiefere Kerben; negativ: die andere Färbung.</td></tr>
+  <tr><td>Stereo</td><td>Versatz des rechten Kanals: 0 = mono, 1 = gegenläufig.</td></tr>
+  <tr><td>Mix</td><td>0,5 = die tiefsten Kerben. Der Pegel bleibt gleich.</td></tr>
+  <tr><td>Band</td><td>Filtert nur den Effekt: außerhalb davon bleibt der Klang trocken.</td></tr>
+  <tr><td>TZ (Flange)</td><td>Through-Zero: Der trockene Klang wird um 2 ms verzögert, sodass der Durchlauf vor und hinter ihm verläuft (der Jet des Band-Flangers). Braucht Manual um 2 ms.</td></tr>
+  <tr><td>Stages (Phaser)</td><td>4, 8 oder 12 Stufen: 2, 4 oder 6 Kerben.</td></tr>
+</table>
+
+<h3>Taps</h3>
+<figure><img src="img/fx-taps.webp" alt="Taps"></figure>
+<p>Vier Abgriffe auf einer Verzögerungsleitung: ein Rhythmus in Sync oder ms, ein gestimmter Resonator in Key. Ihre Echos laufen weiter in die Effekte darunter.</p>
+<table>
+  <tr><th>Regler</th><th>Funktion</th></tr>
+  <tr><td>Mode</td><td>Sync (Div des Tempos), ms (Time), Key (die Grundzeit ist eine Periode der Note: Jeder Abgriff wird zu einem gestimmten Kammfilter). Div und Time teilen sich ein Feld, das der Modus wählt.</td></tr>
+  <tr><td>Glide</td><td>Wie die Abgriffe eine neue Zeit erreichen: sofort (Off) oder gleitend (die Echos verbiegen sich; in Key gleitet die Resonanz).</td></tr>
+  <tr><td>Ratio 1-4</td><td>Jeder Abgriff spielt bei der Grundzeit, geteilt durch sein Verhältnis. In Key ist das Verhältnis die Tonhöhe des Abgriffs relativ zur Note.</td></tr>
+  <tr><td>Chord</td><td>Kopiert die Verhältnisse von V1-V4 in die vier Abgriffe: In Key klingen die Abgriffe Ihren Akkord.</td></tr>
+  <tr><td>Level, Pan 1-4</td><td>Pro Abgriff.</td></tr>
+  <tr><td>FB, Damp</td><td>Rückkopplung jedes Abgriffs (von ein paar Echos bis zu einer langen Resonanz); Abdunkelung in der Schleife.</td></tr>
+  <tr><td>Band</td><td>Hochpass und Tiefpass auf den hörbaren Abgriffen (12 dB/Okt.), nicht in der Rückkopplung. Off: unverändert.</td></tr>
+  <tr><td>Mix, Duck</td><td>Trocken bis nur Abgriffe; Duck senkt die Abgriffe ab, solange eine Note gehalten wird.</td></tr>
+</table>
+
+<h3>Lush</h3>
+<p>Ein diffuses Delay, das zu einer üppigen Fahne wird. <span class="ui">Decay</span> (Zeit der ersten Stufe: kurz = ein dichter Raum, lang = deutlich
+getrennte Anschwellungen), <span class="ui">FB</span> (Länge der Fahne), <span class="ui">Motion</span> (wie stark sie atmet; -1 = eingefroren),
+<span class="ui">Material</span> (von stumpfem Holz bis Glas), <span class="ui">Out Band</span> (Färbung des Ausgangs),
+<span class="ui">Pitch</span> (jeder Durchgang verschiebt sich um dieses Intervall: eine Kaskade), <span class="ui">Shift</span> (jeder Durchgang verschiebt das Spektrum
+um einige Hz), <span class="ui">Glide</span>, <span class="ui">Mix</span>.</p>
+
+<h3>Reverb</h3>
+<p><span class="ui">Mix</span>, <span class="ui">Decay</span>, <span class="ui">Room</span> (von klein und nah bis weit),
+<span class="ui">Diff</span> (0: der Anschlag bleibt scharf; 1: vollständig geglättet), <span class="ui">Band</span> im Hallraum,
+<span class="ui">Shimmer</span> (eine tonhöhenverschobene, zurückgeführte Kopie: eine Kaskade), <span class="ui">Shim Pitch</span> (+12 = die klassische Oktave nach oben),
+<span class="ui">Shim Damp</span> (öffnet die Filter des Hallraums nur für den Shimmer), <span class="ui">Freeze</span> (hält die Fahne nahezu unendlich).</p>
+
+<h3>Cloud</h3>
+<figure><img src="img/fx-cloud.webp" alt="Cloud"></figure>
+<p>Ein spektraler Hall, bis zu einer Minute lang, ohne metallisch zu werden.</p>
+<table>
+  <tr><th>Regler</th><th>Funktion</th></tr>
+  <tr><td>Decay, Damp</td><td>Länge (0,2 bis 60 s); wie viel schneller die Höhen abklingen.</td></tr>
+  <tr><td>Clarity</td><td>0: eine rauschende, diffuse Wolke. 1: Jedes Band hält seine Phase und singt.</td></tr>
+  <tr><td>Shift</td><td>Verschiebt die ganze Wolke um einige Hz: eine metallische Färbung.</td></tr>
+  <tr><td>Drift, Rate, mode</td><td>Lässt Shift von selbst wandern (Sine oder Random).</td></tr>
+  <tr><td>Sparkle, Density, Length</td><td>Funken, die zufällig in den Bändern der Wolke aufleuchten. Sparkle: wie hell sie aufblitzen (0 = aus). Density: wie viele pro Sekunde über das ganze Spektrum, 1 bis 2000; sie verteilen sich auseinander nach links und rechts. Length: wie lange jeder ausklingt, 10 bis 1000 ms: kurz = Glitzern, lang = ein Schimmer, der nachklingt.</td></tr>
+  <tr><td>Mask</td><td>32 Frequenzbereiche (40 Hz bis 16 kHz): Klicken Sie auf eine Zelle, um diesen Bereich aus der Wolke zu entfernen. Klick auf die Beschriftung Mask: alle Bereiche zurück.</td></tr>
+  <tr><td>Grain</td><td>Größe der Analyseabschnitte: 93 ms ist straffer, länger ist glatter und später.</td></tr>
+  <tr><td>Band</td><td>Hochpass und Tiefpass auf der hörbaren Wolke (12 dB/Okt.), außerhalb ihres Speichers. Off: unverändert.</td></tr>
+  <tr><td>Freeze, Mix</td><td>Hält die Wolke; trocken bis nass.</td></tr>
+</table>
+
+<h3>Delay</h3>
+<figure><img src="img/fx-delay.webp" alt="Delay"></figure>
+<table>
+  <tr><th>Regler</th><th>Funktion</th></tr>
+  <tr><td>Div / Time</td><td>Die Zeit folgt dem Host-Tempo oder wird in ms eingestellt (1 bis 2500): Klicken Sie zum Wechseln auf die Beschriftung.</td></tr>
+  <tr><td>Rev</td><td>Die Wiederholungen spielen rückwärts, in Abschnitten so lang wie die Delayzeit.</td></tr>
+  <tr><td>FB, Mix, Width</td><td>Rückkopplung (die Filter in der Schleife lassen auch die Höhen abklingen), trocken bis nass, von gerade bis Ping-Pong.</td></tr>
+  <tr><td>Diff, Size, Motion, Decay</td><td>Verwischt die Wiederholungen durch vier Allpass-Stufen: von einem sauberen Echo bis zu einer Wolke; Größe, Bewegung und Nachklingen der Verwischung.</td></tr>
+  <tr><td>Pitch, Shift</td><td>Jede Wiederholung verschiebt sich um ein Intervall oder verschiebt ihr Spektrum um einige Hz.</td></tr>
+  <tr><td>Glide</td><td>Off: eine schnelle Überblendung auf eine neue Zeit. Darüber: Die Zeit gleitet, und die Wiederholungen verbiegen sich.</td></tr>
+  <tr><td>Band</td><td>Hochpass und Tiefpass auf den hörbaren Echos (12 dB/Okt.) und in der Schleife: Jede Wiederholung verliert etwas mehr. Off: unverändert.</td></tr>
+  <tr><td>Duck</td><td>Senkt die Echos ab, solange eine Note gehalten wird.</td></tr>
+</table>
+
+<h3>Prism</h3>
+<p>Ein spektrales Delay: Der Klang wird in etwa tausend Bänder aufgeteilt, jedes mit eigener Verzögerung.</p>
+<table>
+  <tr><th>Regler</th><th>Funktion</th></tr>
+  <tr><td>Div / Time</td><td>Delayzeit in Notenwerten des Tempos oder 50 bis 2500 ms (nie unter etwa 48 ms: so lange braucht die Spektralanalyse): Klicken Sie zum Wechseln auf die Beschriftung. Time ist modulierbar; die Echos folgen dann Glide.</td></tr>
+  <tr><td>Stretch</td><td>Dehnt jedes Echo über das Spektrum (das „Piou“): Bei +1 kommen die Höhen bis zu eine Delayzeit nach den Tiefen an; negativ: Die Tiefen kommen zuletzt.</td></tr>
+  <tr><td>Pitch</td><td>Jede Wiederholung wird transponiert, von Echo zu Echo aufaddiert. Hundertstel ergeben eine langsame Drift.</td></tr>
+  <tr><td>FB, Damp</td><td>Wie viele Wiederholungen; die Höhen klingen bei jedem Durchgang schneller ab.</td></tr>
+  <tr><td>Rev, Glide, Mix</td><td>Rückwärts-Echos; wie sich die Zeit ändert; trocken bis nass (konstante Leistung).</td></tr>
+  <tr><td>Duck</td><td>Senkt die Echos, solange eine Note gehalten wird; sie kehren zurück, wenn Sie loslassen. 0 = keine Absenkung.</td></tr>
+  <tr><td>Band</td><td>Hoch- und Tiefpass auf den hörbaren Echos (12 dB/Okt.), nicht in der Rückkopplung: Damp dunkelt jeden Durchgang ab, sie formen das ganze Echo. Off: unverändert.</td></tr>
+</table>
+
+<h3>EQ Fx A und B</h3>
+<figure><img src="img/fx-eqfxa.webp" alt="EQ Fx A"></figure>
+<p>Zwei weitere EQs, identisch mit EQ A-D, in der Leiste platziert.</p>
+
+<h3>Sidechain</h3>
+<figure><img src="img/fx-sidechain.webp" alt="Sidechain"></figure>
+<p>Der Pegel sinkt auf jedem Schlag ab, nach einer Form, die Sie zeichnen.</p>
+<table>
+  <tr><th>Regler</th><th>Funktion</th></tr>
+  <tr><td>Graph</td><td>Die Absenkung über einen Zyklus, von stumm (unten) bis unverändert (oben). Klick: Punkt hinzufügen; ziehen; der Ring krümmt ein Segment; Doppelklick: entfernen. Die weiße Linie zeigt, wo der Zyklus gerade steht.</td></tr>
+  <tr><td>Bank</td><td>Sidechain-Formen (jede bringt ihr Div mit). Goldener Würfel: eine Form aus der Bank; rosa: ein zufälliger Rhythmus auf 16 Schritten.</td></tr>
+  <tr><td>Snap</td><td>Klick: Off, 1/4, 1/8, 1/16, 1/32 – der Magnet für die Punkte.</td></tr>
+  <tr><td>Depth</td><td>0 = keine Absenkung, 100 % = die gezeichnete Form vollständig.</td></tr>
+  <tr><td>Div</td><td>Länge eines Zyklus (1/4 = eine Absenkung pro Schlag). Im Modus Input: wie lange die Absenkung dauert.</td></tr>
+  <tr><td>Mode</td><td><em>Tempo</em>: wiederholt sich von selbst. <em>Input</em>: spielt einmal ab, jedes Mal wenn der Sidechain-Eingang des Plugins Thresh überschreitet.</td></tr>
+  <tr><td>Thresh, Monitor</td><td>Modus Input: die Auslöseschwelle (der Balken zeigt, was der Detektor hört, bernsteinfarben beim Überschreiten; klicken oder ziehen Sie ihn, um Thresh einzustellen, Doppelklick für den Standardwert) und Abhören des Eingangs.</td></tr>
+  <tr><td>Attack, Release</td><td>Modus Input, nur der Detektor: wie schnell er ansteigt (0 bis 100 ms; 0 erfasst jede Spitze, länger ignoriert kurze Klicks) und zurückfällt (5 ms bis 1 s; kurz: Schnelle Schläge starten jeweils die Absenkung, lang: Dicht aufeinanderfolgende Schläge zählen als einer).</td></tr>
+  <tr><td>Band</td><td>Modus Input: die Frequenzen, die der Detektor hört; verengen Sie es, um die Absenkung nur mit der Kick zu starten. Der abgehörte Klang bleibt unverändert.</td></tr>
+  <tr><td>Init</td><td>Zurück zur Ausgangsabsenkung.</td></tr>
+</table>
+
+<h3>Spatial</h3>
+<figure><img src="img/fx-spatial.webp" alt="Spatial"></figure>
+<p>Das Stereobild der Stimmen. Seine Schaltfläche sitzt nahe dem Ende der Leiste, aber Spatial wirkt direkt nach dem Crush auf die Stimmen,
+vor den Effekten.</p>
+<table>
+  <tr><th>Regler</th><th>Funktion</th></tr>
+  <tr><td>Spatial</td><td>Ein / aus. Aus: Alle Stimmen stehen in der Mitte.</td></tr>
+  <tr><td>Stereo</td><td>Öffnet oder verengt das Panorama aller Stimmen: 0 = mittig, 1 = wie bei Pan der jeweiligen Stimme eingestellt.</td></tr>
+  <tr><td>Ster Disp</td><td>Gibt jedem Teilton links und rechts eine leicht unterschiedliche Phase: ein breiteres Stereobild; die Monosumme löscht sich nie aus.</td></tr>
+  <tr><td>Low Byp</td><td>Unterhalb dieser Frequenz kehren die Stimmen in die Mitte zurück.</td></tr>
+  <tr><td>Width</td><td>Jede Seite driftet zu ihrer eigenen verwürfelten Kopie: sehr breit bei 100 %; die Monosumme wird dünner.</td></tr>
+  <tr><td>M/S</td><td>Eine verwürfelte Kopie der Mitte wird links addiert und rechts abgezogen: Die Monosumme behält das Original.</td></tr>
+  <tr><td colspan="2"><strong>Width &amp; M/S motion</strong>: Die drei Einstellungen unter diesem Titel bewegen die Verwürfelung von Width und M/S, und nichts anderes.</td></tr>
+  <tr><td>Drift</td><td>Das Bild von Width und M/S driftet langsam, Band für Band: Der Klang schwenkt sanft zwischen links und rechts (gut bei Percussion und kurzen Klängen). Die Anschläge bleiben sauber. 0 = unbewegt.</td></tr>
+  <tr><td>Rate</td><td>Wie schnell Drift sich bewegt, 0,05 bis 2 Hz. Schnell und mit viel Drift klingt es allmählich wie ein Chorus.</td></tr>
+  <tr><td>Shape</td><td>Sine: weiche, regelmäßige Wellen. Random: Jede Welle gleitet zu einem neuen, zufällig gezogenen Wert.</td></tr>
+</table>
+<div class="note">Comma meldet dem Host immer dieselbe Latenz (10 ms). Das Ein- oder Ausschalten eines Effekts oder das Drehen an einer beliebigen Einstellung
+ändert sie nie, sodass Ihr Host nie neu abgleichen muss (kein Aussetzer).</div>
+
+<h3>Dynamics</h3>
+<figure><img src="img/fx-dynamics.webp" alt="Dynamics"></figure>
+<p>Ein Dreiband-Kompressor, immer nahe dem Ende der Kette. Schwellen (-60 bis +12 dB) und Übergangsfrequenzen werden in seinem Graphen eingestellt, der das
+eingehende Spektrum zeigt.</p>
+<table>
+  <tr><th>Regler</th><th>Funktion</th></tr>
+  <tr><td>Ratio (Low, Mid, High)</td><td>1 = keine Kompression, 20 = fast ein Limiter.</td></tr>
+  <tr><td>Gain (pro Band)</td><td>-24 bis +24 dB nach der Kompression.</td></tr>
+  <tr><td>Upward</td><td>Das Band hebt auch an, was unter seiner Schwelle bleibt (begrenzt durch Range).</td></tr>
+  <tr><td>Kopfhörer</td><td>Dieses Band allein hören (auch der trockene Anteil von Mix wird stummgeschaltet).</td></tr>
+  <tr><td>Byp</td><td>Das Band passiert unbearbeitet.</td></tr>
+  <tr><td>Attack, Release</td><td>0,1 bis 250 ms; 5 ms bis 1,5 s.</td></tr>
+  <tr><td>Mix, Gain</td><td>Parallelkompression; Ausgangsverstärkung.</td></tr>
+  <tr><td>Range</td><td>Wie weit ein Upward-Band die leisen Stellen höchstens anheben darf (0 bis 30 dB).</td></tr>
+  <tr><td>Auto</td><td>Bringt den komprimierten Klang auf den Pegel des trockenen Signals zurück (&plusmn;12 dB).</td></tr>
+  <tr><td>Init</td><td>Alle Einstellungen zurück auf Standard. Ihr Ein/Aus bleibt.</td></tr>
+</table>
+
+<!-- ============================================================ -->
+<h2 id="out">12. Ausgang: Master, Limiter, Pegelanzeige</h2>
+<figure><img src="img/master-column.webp" alt="Die Ausgangsspalte"></figure>
+<table>
+  <tr><th>Regler</th><th>Funktion</th></tr>
+  <tr><td>Master</td><td>Die Ausgangslautstärke, nach den Effekten und Dynamics. Sie ändert den Pegel, nicht den Klang (außer wenn der Limiter eingeschaltet ist). Unity in der Mitte des Regelwegs, +24 dB am Anschlag.</td></tr>
+  <tr><td>Limiter</td><td>Eine Obergrenze für die Spitzen, die letzte Stufe. Ihre Obergrenze ist die gestrichelte bernsteinfarbene Linie auf der Pegelanzeige: ziehen Sie sie oder geben Sie sie per Doppelklick ein. Was er wegnimmt, erscheint als bernsteinfarbener Balken.</td></tr>
+  <tr><td>Drive</td><td>Treibt den Pegel gegen die Obergrenze (0 bis 24 dB).</td></tr>
+  <tr><td>Release</td><td>Wie schnell er loslässt (5 ms bis 1 s). Er schaut 1 ms voraus.</td></tr>
+  <tr><td>Pegelanzeige, Peak / RMS / LUFS</td><td>Peak: die höchste Spitze (Klick auf die Anzeige setzt sie zurück). RMS: der Mittelwert über 300 ms (weiße Linie: -20 dB). LUFS: die Lautheit der letzten 3 s (BS.1770, wie das Ohr hört); die weiße Linie markiert -17, den Pegel der Presets. Halten Sie eine Note 3 s, um sie abzulesen.</td></tr>
+  <tr><td>CPU</td><td>Die Rechenlast. Bernsteinfarben über 50 %, rot über 80 %.</td></tr>
+</table>
+<p>Eine Sicherheitsstufe nach allem anderen hält den Ausgang unter 0 dBFS.</p>
+
+<!-- ============================================================ -->
+<h2 id="mod">13. Modulation</h2>
+<figure><img src="img/modulation.webp" alt="Tab Modulation"></figure>
+<h3>Der schnellste Weg: Drag &amp; Drop</h3>
+<p>Ziehen Sie eine beliebige <strong>Mod-Schaltfläche</strong> (die Leiste links im Tab Modulation oder die Mod-Kurzwahlen unten rechts in den anderen
+Tabs), eine <strong>Makro-Beschriftung</strong> (M1-M8) oder eine <strong>XY-Beschriftung</strong> auf einen Regler. Während Sie ziehen, öffnet das Verweilen
+über einem Tab oder einer Seitenschaltfläche diese; der Regler unter dem Mauszeiger leuchtet auf. Beim Loslassen entsteht eine Verbindung mit 100 %.</p>
+<p>Ein modulierter Regler zeigt einen weißen Bogen (die Reichweite seiner Verbindungen) und einen farbigen Punkt pro Quelle. Um die Stärke zu ändern,
+klicken Sie mit der rechten Maustaste auf den Regler: Amount &plusmn;10 %, Invert sign, Set amount..., Remove link. Fahren Sie mit der Maus über eine
+Mod-Schaltfläche, eine Makro- oder XY-Beschriftung, um alles zu sehen, was sie bewegt.</p>
+
+<h3>Die 32 Quellen</h3>
+<p>Klicken Sie auf einen Mod in der Leiste, um ihn anzuzeigen; das kleine Feld am Anfang seiner Schaltfläche zeigt das Symbol seines Typs und schaltet ihn ein oder aus. Rechtsklick: eine Quelle
+kopieren / einfügen oder auf alle anderen kopieren. Der Typwahlschalter, mit denselben Symbolen, wählt den Typ; die Seite zeigt dann nur die Einstellungen dieses Typs.</p>
+<table>
+  <tr><th>Typ</th><th>Was er ist</th></tr>
+  <tr><td>Curve</td><td>Eine gezeichnete Form, in Schleife. Klicken, um einen Punkt hinzuzufügen, ziehen, um ihn zu verschieben, den Ring ziehen, um zu krümmen, Doppelklick, um zu entfernen; <span class="ui">Grid X</span> und <span class="ui">Grid Y</span> (auch per Rechtsklick) legen fest, wo die Punkte einrasten. Grid X: die Zählzeiten des Zyklus in Sync (1/8, standardmäßig 1/16, 1/32, 1/64: feinere Schritte bei einem kurzen Zyklus), Off oder 2 bis 32 gleiche Teile; Grid Y: Off oder 2 bis 32 Stufen. Eine Bank von Kurven mit goldenem und rosa Würfel.</td></tr>
+  <tr><td>Random</td><td>Ein neuer Wert in jedem Zyklus (Smooth macht daraus ein Gleiten).</td></tr>
+  <tr><td>Chaos</td><td>Ein chaotisches System als LFO: <span class="ui">System</span> (Rossler, Lorenz, Duffing, Logistic) und <span class="ui">Chaos</span> (fast periodisch bis völlig chaotisch).</td></tr>
+  <tr><td>Step</td><td>Ein Sequenzer mit 1 bis 16 Schritten (klicken oder ziehen im Graphen). Quant (Free, 12, 24 Stufen), die Anzahl der Schritte (sie füllen immer den ganzen Zyklus), Join (Hold, Lin, Curve), die Leserichtung (Forward, Backward, Ping-pong: hin und zurück, Random), Init und Würfel (Gold: eine spielbare Phrase; Rosa: alles).</td></tr>
+  <tr><td>Env</td><td>Eine Hüllkurve, die von jeder Note gestartet und in ihrem Graphen gezeichnet wird (Smooth: die Krümmung ihrer Segmente).</td></tr>
+  <tr><td>Follow</td><td>Folgt dem Pegel des Sidechain-Eingangs (0 bei Stille, 1 bei Vollaussteuerung). <span class="ui">Gain</span> auf dem Eingang vor der Messung (-24 bis +24 dB) und <span class="ui">Band</span>, dessen beide Kanten ein Hochpass und ein Tiefpass nur auf das Gemessene sind (zum Beispiel: nur die Kick, nur die Hi-Hats). Attack und Release in seinem Graphen; Smooth: die Krümmung seines Wertes.</td></tr>
+</table>
+<p>Gemeinsame Einstellungen: <span class="ui">Rate</span> (0,02 bis 20 Hz) oder <span class="ui">Div</span> (Notenwerte des
+Host-Tempos): Klicken Sie zum Wechseln auf die Beschriftung, jeder behält seinen Wert. <span class="ui">Smooth</span>, <span class="ui">Retrig</span> (Neustart bei jeder Note), <span class="ui">Uni</span> (von 0 aufwärts statt
+um 0 herum), <span class="ui">Trigger</span>. Ein Env hat keinen Zyklus: Sein Uni, Rate und Div sind blass. Ein Follow wird von nichts gestartet: Auch sein Retrig und Trigger sind blass. Rate, Smooth und Div lassen sich selbst modulieren (ein Makro, ein anderer Mod): ein modulierter
+Div-Wert schreitet von den langsamsten zu den schnellsten Notenwerten, ein Wobble wird also nur schneller.</p>
+<p><span class="ui">Trigger</span> gibt an, was diese Quelle neben Retrig neu startet. <em>Note</em>: nur die Note. <em>Mod 1</em> bis <em>Mod 32</em>: jeder Schritt dieses Mods (jeder Zyklus bei Curve, Random oder Chaos; ein ausgeschalteter Mod, ein Env oder ein Follow startet nichts neu). Ein Step, Curve, Random oder Chaos beginnt sein Muster dann von vorn. Ein Env startet neu, während die Note gehalten wird, und die Note startet es weiterhin: zum Beispiel ein Filterimpuls auf jedem Schritt einer Step-Sequenz. Eine Quelle, die bei jedem Schritt neu startet, spielt nur den Teil ihres Musters, der in einen Schritt passt; geben Sie ihr also eine passende Geschwindigkeit. Ein Mod, der auf sich selbst zielt, bewirkt nichts, und sein Feld wird blass.</p>
+<figure><img src="img/mod-step.webp" alt="Eine Step-Quelle"><figcaption>Eine Step-Quelle, mit dem goldenen Würfel gewürfelt.</figcaption></figure>
+
+<h3>Die Matrix</h3>
+<p>32 Verbindungen auf zwei Seiten (<span class="ui">1-16</span>, <span class="ui">17-32</span>). Jede Verbindung: eine <strong>Quelle</strong>, ein
+<strong>Ziel</strong> und eine <strong>Stärke</strong> (-100 bis +100 %; negativ = in die andere Richtung). Der Schalter <span class="ui">O / I</span>
+oben schaltet alle Verbindungen ein oder aus; die Quellen laufen weiter.</p>
+<p>Quellen: Mod 1-32, Macro 1-8, Vel (Anschlagdynamik jeder Note), Vel Hold (beim Note-on eingefroren), Mod Wheel, XY X, XY Y.</p>
+<p>Die Ziele sind im Zielmenü nach Bereichen gruppiert (Voices, Global, jede Engine, jede Seite, der Mangle, jeder Filter und
+Effekt, die Mods selbst, die Matrix-Stärken ...). Stimmenbezogene Ziele gibt es für V1 bis V8. Ein Ziel verwendet in der Regel das Wort, das Sie auf dem Regler lesen, ausgeschrieben, nach seinem Bereich und seiner Stimme (<em>Pluck Decay V1</em>); die Automationslisten Ihres Hosts verwenden dieselben Wörter.</p>
+<p>Ist die Quelle ein Makro, macht eine Schaltfläche neben der Stärke es <strong>bipolar</strong> (Mitte = null, wirkt in beide Richtungen). Diese
+Eigenschaft gehört zum Makro: Alle seine Verbindungen folgen ihr.</p>
+
+<h3>Makros</h3>
+<figure><img src="img/band-macros.webp" alt="Makros"></figure>
+<p>Acht Drehregler, M1-M8. Ziehen Sie die <strong>Beschriftung</strong> eines Makros auf Regler, um es zu verbinden. Ein Makro übernimmt den Namen seines
+ersten Ziels; ein Doppelklick auf die Beschriftung benennt es um (ein <kbd>|</kbd> erzwingt einen Zeilenumbruch). Rechtsklick auf den Drehregler: Bipolar,
+oder alle seine Verbindungen entfernen. Doppelklick auf den Drehregler: zurück in die Ruhestellung.</p>
+
+<h3>XY-Pad</h3>
+<p>Im Tab Modulation. Ziehen Sie den Punkt: Seine beiden Achsen sind Quellen. Die Mitte ist die Ruhestellung (dort wird nichts moduliert); Doppelklick
+zentriert neu. Die Beschriftungen <span class="ui">X</span> und <span class="ui">Y</span> lassen sich auf Regler ziehen, übernehmen den Namen dessen, was sie steuern,
+lassen sich per Doppelklick umbenennen, und eine auf einer Beschriftung abgelegte Quelle moduliert diese Achse.</p>
+
+<h3>Mod-Kurzwahlen</h3>
+<figure><img src="img/mod-shortcuts.webp" alt="Mod-Kurzwahlen"></figure>
+<p>Unten rechts in den Tabs Synthesis, EQ's/Filters und FX: Mod 1-16 oder 17-32 (die beiden Schaltflächen links). Ziehen Sie eine davon auf einen
+Regler. Eine belegte Kurzwahl leuchtet; fahren Sie mit der Maus darüber, um ihre Verbindungen zu lesen.</p>
+
+<!-- ============================================================ -->
+<h2 id="play">14. Spielen: Tastatur, Akkorde, Skala</h2>
+<h3>K -- die Tastatur</h3>
+<figure><img src="img/band-keyboard.webp" alt="Tastaturleiste"></figure>
+<p>Klicken Sie unten links auf <span class="ui">K</span>. Die Bildschirmtastatur spielt Comma (auch Ihre Computertastatur, solange diese Leiste
+angezeigt wird). Das <strong>Pitchbend-Rad</strong> federt in die Mitte zurück; das <strong>Modulationsrad</strong> bleibt, wo Sie es loslassen (es folgt
+CC1 Ihres MIDI-Keyboards; routen Sie es mit der Quelle <em>Mod Wheel</em>). Die beiden kleinen Felder stellen den Bend-Bereich nach oben und unten ein (in
+Halbtönen).</p>
+<p>Die Tastatur öffnet sich auf C1 und lässt sich von C0 bis C8 verschieben (C2 = MIDI-Note 48, 130,81 Hz, wie in Bitwig). Ziehen Sie über ihren linken oder rechten Rand hinaus, um sie zu verschieben, je weiter, desto schneller; auch das Mausrad verschiebt sie. Die Pfeile an beiden Enden leuchten, wenn in dieser Richtung weitere Noten liegen: Ein Klick springt eine Oktave. Auf der Computertastatur spielt A das C2, W C#2, S D2 ... bis K, C3. <span class="ui">Vel 78</span>: Leuchtet es, spielt jede Taste der Bildschirmtastatur mit 78,7 % Velocity (Bitwigs Standard), wo immer Sie klicken; aus: Je höher Sie auf eine Taste klicken, desto leiser spielt sie. Ein MIDI-Controller behält seine eigene Velocity.</p>
+<p>Die aufrecht stehende Schaltfläche <span class="ui">Hold</span> hält die Note: Solange sie leuchtet, warten losgelassene Tasten (der Bildschirmtastatur oder per MIDI) und wirken erst,
+wenn sie ausgeht; eine noch gedrückte Taste klingt weiter. Das <strong>Sustain-Pedal</strong> (CC64) bewirkt dasselbe, solange es getreten ist, und
+lässt Hold leuchten. Hold bleibt an, wenn Sie zu M oder C wechseln: Die Noten klingen weiter, und K leuchtet.</p>
+<p><strong>All Sound Off</strong> (CC120) bringt Comma sofort zum Schweigen, Release und Effektfahnen eingeschlossen (in 10 ms, ohne Klick).
+<strong>All Notes Off</strong> (CC123) lässt die Noten los und die Fahnen ausklingen.</p>
+
+<h3>C -- die Akkordfolge</h3>
+<figure><img src="img/band-chords.webp" alt="Akkordfolge"></figure>
+<p>Acht Schritte. Klicken Sie auf die Nummer eines Schritts, um ihn ein- oder auszuschalten, auf seine Stufe, um I bis VII der Skala zu wählen, und darunter, um den Akkord
+zu wählen (Major, Minor, Dim, Aug, Sus2, Sus4, 6, m6, 7, Maj7, m7, m7b5, dim7, 9, m9, Maj9, add9 oder ein Ratio-Preset). Ist
+<span class="ui">Prog</span> eingeschaltet, übernimmt jede gespielte Note den nächsten aktiven Schritt: um seine Stufe verschoben, mit seinem Akkord gespielt.
+Wird mit dem Preset gespeichert.</p>
+
+<h3>Skala</h3>
+<p><span class="ui">Scale</span> oben: Wählen Sie einen Grundton (C bis B) und eine Skala (Off, Major, Minor, Harmonic Minor, Dorian, Phrygian, Lydian,
+Mixolydian, Locrian, Pentatonic Major, Pentatonic Minor, Blues). Jede gespielte Note rückt auf den nächstgelegenen Ton der Skala (bei Gleichstand nach
+unten). Wird mit dem Preset gespeichert.</p>
+
+<h3>Rec -- den Ausgang aufnehmen</h3>
+<p><span class="ui">Rec</span> in der Ausgangsspalte öffnet den Rekorder: ein kleines Fenster, das von Seite zu Seite offen bleibt. Es macht aus dem gesamten Ausgang von Comma ein Sample, auf eine von zwei Arten:</p>
+<ul>
+  <li><span class="ui">Last seconds</span>: was Sie gerade gespielt haben. <span class="ui">Keep last seconds</span> speichert es; <span class="ui">Length</span> (1 bis 29 s) gibt an, wie weit es zurückreicht.</li>
+  <li><span class="ui">Next note</span>: <span class="ui">Arm</span>, dann spielen. Die Aufnahme beginnt mit Ihrer nächsten Note und endet, wenn der Klang verklungen ist (Effektfahnen eingeschlossen), oder bei Length. Ein erneuter Klick auf dieselbe Schaltfläche bricht ab oder beendet eine Aufnahme.</li>
+</ul>
+<p>Die Schaltfläche Rec ist bernsteinfarben, wenn sie scharf geschaltet ist, rot während der Aufnahme. Das Sample wird beschnitten, ein- und ausgeblendet und auf -1 dB gebracht; dann geben Sie ihm einen Namen und wählen seinen Ordner in Samples (Captures, Kick, Snare, Hat, Clap, Perc, Texture oder einen neuen). <span class="ui">Folder</span> öffnet den Ordner Samples. Jeder dieser Ordner ist eine Familie in den Menüs der Engine Sample und der Attack-Ebene.</p>
+
+<!-- ============================================================ -->
+<h2 id="presets">15. Presets und Bänke</h2>
+<figure><img src="img/presets.webp" alt="Tab Presets"></figure>
+<h3>Die Presetliste (obere Leiste)</h3>
+<p>Wählen Sie ein Preset, um es zu laden; die Pfeile wechseln zum vorherigen / nächsten. Ihr Menü enthält außerdem Save, Save As, Reload, Rename, Delete und
+Init (Init lädt <em>DeFaUlT</em>, den Klang, mit dem Comma startet). Ein <strong>*</strong> vor dem Namen bedeutet, dass der Klang seit dem Laden
+verändert wurde.</p>
+<p><span class="ui">Save As</span> geht vom geladenen Preset aus, um Versionen davon zu speichern: sein Name mit einer Version mehr
+(<em>Strong Enough</em> wird <em>Strong Enough v2</em>, dann <em>v3</em> ...) und seine Category, Type und Color; die Note beginnt leer.
+Von <em>DeFaUlT</em> aus wird nichts übernommen.</p>
+<p>Die Liste zeigt die Presets des im Tab Presets gewählten Ordners samt Unterordnern (All presets: die ganze Bank); die Pfeile durchlaufen diese Liste. Ein anderswo geladenes Preset behält seinen Namen im Feld.</p>
+<p>Dieses Menü hat drei Spalten, wie die Menüs der anderen Bänke und der nach Familien sortierten Listen (Ratio-Presets, EQ- und Filter-Presets, Wavetables, die Listen von Impact, Noise, Sample und Attack). Links die Familien, aus den Unterordnern gebildet: Ein Klick ändert die mittlere Spalte und lässt das Menü offen. In der Mitte der Inhalt dieser Familie, das aktuelle Element hervorgehoben. Rechts die Aktionen (Save, Save As, Reload, Rename, Delete, Init bei einer Bank; Open folder bei den Wavetables; Samples und Recipes bei den Listen, die sie verwenden). Sie können dort eigene Ordner anlegen und löschen; die Ordner von Comma lassen sich nicht löschen. EQ- und Filter-Presets gibt es in zwei Familien: Basic, einfache Formen, und Presets, Ihre eigenen.</p>
+
+<h3>Der Tab Presets</h3>
+<ul>
+  <li><strong>Ordner</strong>: Klicken Sie auf einen, um seine Presets (und die seiner Unterordner) anzuzeigen. <span class="ui">+</span> legt einen neuen Ordner an; Rechtsklick auf einen
+      Ordner benennt ihn um oder löscht ihn (er wandert in den Papierkorb). Ziehen Sie ein Preset aus der Liste auf einen Ordner, um es zu verschieben.</li>
+  <li><strong>Suche</strong>: behält die Presets, deren Name, Autor, Tags, Notiz oder Ordner jedes eingegebene Wort enthalten. Rechts daneben der Zähler: wie viele Presets die Liste zeigt, von der ganzen Bank.</li>
+  <li><strong>Category</strong>, <strong>Type</strong> und <strong>Color</strong>: Tag-Filter (die Art des Klangs, was er innerhalb dieser Art ist, der Charakter des Klangs: Lead, Bell, Bright). Sie wirken zusammen. Jeder zeigt, wie viele Presets ihn tragen (All: die ganze Bank). Die Liste <em>Filter</em> ist derselbe
+      Filter wie Category.</li>
+  <li><strong>Die Liste</strong>: Name, Date (die letzte Änderung der Datei), Author, Category, Type, Color, Fav (0 bis 5 Sterne), Note. Klicken Sie auf eine Spalte, um zu sortieren; ziehen Sie einen Spaltenkopf, um die Spalte zu verschieben (die Reihenfolge wird gespeichert).</li>
+  <li><strong>Das Datenblatt</strong> rechts: Folder (<span class="ui">Move...</span>), Author und Note (gespeichert, wenn Sie Enter drücken oder das Feld
+      verlassen), Category, Type und Color <span class="ui">Tags...</span> (Tags ankreuzen oder einen neuen eingeben; Rechtsklick auf einen Tag: in allen Presets umbenennen oder entfernen).</li>
+  <li><span class="ui">Load</span>, <span class="ui">Save</span> (in das geladene Preset), <span class="ui">Save As</span>, <span class="ui">Rename</span>,
+      <span class="ui">Delete</span> (in den Papierkorb).</li>
+</ul>
+
+<h3>Wo alles liegt</h3>
+<p>Alles, was Sie weitergeben können, liegt im <strong>Bankordner</strong>, standardmäßig <code>Documents\Comma</code>:</p>
+<table class="col-libre">
+  <tr><th>Ordner</th><th>Inhalt</th></tr>
+  <tr><td>Presets</td><td>Ihre Klänge, je eine XML-Datei (Unterordner möglich).</td></tr>
+  <tr><td>VoicePresets</td><td>Ratio-Presets (Akkorde).</td></tr>
+  <tr><td>EqPresets, F1Presets</td><td>EQ-Kurven, Filter.</td></tr>
+  <tr><td>CurvePresets, SpectronPresets, SidechainPresets</td><td>Mod-Kurven, Spectron-Kurven, Sidechain-Formen.</td></tr>
+  <tr><td>Wavetables</td><td>Tabellen für Wave und Shard (und die von Capture erzeugten Tabellen).</td></tr>
+  <tr><td>Samples</td><td>WAV-Dateien für Sample, Noise (Modus Sample) und Attack, und was Rec aufnimmt.</td></tr>
+</table>
+<p>Die Schaltfläche <span class="ui">Bank folder</span> (Tab Presets) verschiebt die ganze Bank an einen anderen Ort (ein Cloud-Laufwerk, eine externe Festplatte),
+kehrt zu <code>Documents\Comma</code> zurück oder zeigt sie im Explorer an. Sie kann auch zusätzliche Ordner für Wavetables und Samples hinzufügen. Ein Preset speichert die
+<em>Namen</em> seiner Tabellen und Samples: Geben Sie diese Dateien zusammen mit dem Preset weiter.</p>
+<p>Nicht mit den Presets gespeichert (auf diesem Computer abgelegt): Farbschema, Fenstergröße, Hinweise, Modus der Pegelanzeige, FX On/Off, Hold, Vel 78, das Tempo der Standalone-Anwendung.</p>
+
+<!-- ============================================================ -->
+<h2 id="dice">16. Die Würfel</h2>
+<p>Würfel finden Sie überall in Comma. Die Konvention ist immer dieselbe:</p>
+<ul>
+  <li><strong>Goldener Würfel</strong>: ein <em>spielbarer</em> Wurf – gezähmte Werte oder ein anderes Element derselben Bank oder Kategorie.</li>
+  <li><strong>Rosa Würfel</strong>: beliebig – der gesamte Bereich, für glückliche Zufälle.</li>
+  <li><strong>Silberner Würfel</strong> (Stimmenkopf): nur die Engine.</li>
+  <li><strong>Rechtsklick auf einen beliebigen Würfel</strong>: zurück zum Zustand vor dem Wurf.</li>
+</ul>
+<p>Sie finden sie an der Presetliste, den Ratio-Presets, jedem Stimmenkopf, den Engines Add, Chaos und Logic, den Listen von Impact, Noise, Sample
+und Attack, bei Spectron, jedem Warp-Slot, jedem Mangle-Block, jeder EQ- und Filterbank, den Sidechain-Formen, den Mod-Kurven und dem
+Step-Sequenzer.</p>
+<p><strong>Mutate</strong> ist der sanfte Verwandte der Würfel: Statt einen neuen Klang zu würfeln, verschiebt es jeden stufenlosen Regler des Patches ein wenig um seinen aktuellen Wert. Die Box daneben bestimmt, wie weit: <em>Subtle</em>, <em>Medium</em> oder <em>Wild</em>. Darunter eine <strong>Ausrichtung</strong>: <em>Electrize</em> (Cyber, Techno, New Wave) mutiert wie Medium und schiebt den Klang dann in diese Richtung. Listen, Schalter, Engines, Routings, Verhältnisse, Tonhöhen, Ausgangspegel und die beiden Velocity-Regler bewegen sich nie; die Master-Hüllkurve bewegt sich nur in Wild. Und ein Regler auf null oder an einem Ende seines Wegs bleibt dort -- was Sie ausgeschaltet haben, bleibt aus. Erneut klicken, um weiter zu wandern; Rechtsklick: zurück zu den Werten vor der letzten Mutation. Die Änderung geschieht während einer kurzen Stille (etwa 75 ms), damit eine gehaltene Note nicht springt.</p>
+
+<!-- ============================================================ -->
+<h2 id="ref">17. Kurzreferenz</h2>
+<h3>Maus</h3>
+<table class="col-libre">
+  <tr><th>Geste</th><th>Wo</th><th>Wirkung</th></tr>
+  <tr><td>Doppelklick</td><td>Jeder Drehregler und jedes Feld</td><td>Standardwert</td></tr>
+  <tr><td>Dreifachklick</td><td>Jeder Wertregler</td><td>Wert eingeben</td></tr>
+  <tr><td>Rechtsklick</td><td>Jeder Regler</td><td>Wert setzen, Modulationsverbindungen</td></tr>
+  <tr><td>Rechtsklick</td><td>Stimmennummer, Mod-Schaltfläche</td><td>Kopieren / Einfügen</td></tr>
+  <tr><td>Rechtsklick</td><td>Jeder Würfel</td><td>Wurf rückgängig machen</td></tr>
+  <tr><td>Klick</td><td>Eine Liste mit mehr als sechs Auswahlen</td><td>Menü mit allen Auswahlen</td></tr>
+  <tr><td>Klick</td><td>Eine Liste mit höchstens sechs Auswahlen</td><td>Nächste Auswahl</td></tr>
+  <tr><td>Klick auf die Beschriftung</td><td>Semi, Pitch, Cut, Ratio (wo gekennzeichnet)</td><td>Hz-Modus</td></tr>
+  <tr><td>Klick auf die Beschriftung</td><td>Rate / Div eines Mods</td><td>Hz oder Notenwert</td></tr>
+  <tr><td>Mod- / Makro- / XY-Beschriftung ziehen</td><td>Auf einen Regler</td><td>Verbindung erstellen</td></tr>
+  <tr><td>Leistenschaltfläche ziehen</td><td>Tab FX, Tab EQ's/Filters</td><td>Effekte, Module neu anordnen</td></tr>
+  <tr><td><kbd>Ctrl</kbd> + Ziehen</td><td>Ratio-Ziffern, Graphen</td><td>Feine Schritte</td></tr>
+  <tr><td>Ecke ziehen</td><td>Fenster</td><td>Größe ändern</td></tr>
+</table>
+
+<h3>Signalfluss</h3>
+<div class="flow">Jede Stimme: engine (+ Attack Pre) -> Diss -> Warp 1 -> Warp 2 -> Mangle (Stutter, Shaper, Rate, Mod, Disperse)
+             -> Pluck / Motion / Spectron / Capture
+             -> [Module auf diese Stimme geroutet] -> Env x Vol -> pan (+ Attack Post) -> Punch (Comp, dann Attack und Sustain)
+Gruppen:     Summe der Stimmen von A, B, C -> [Module auf diese Gruppe geroutet]
+Stimmen:    Summe von V1-V8 -> [Module auf Voices geroutet]
+Mischung:    Stimmen + Sub -> Master-Hüllkurve (Global)
+Danach:      Crush -> Spatial (Width, M/S) -> [Module auf All geroutet]
+             -> FX-Leiste in Ihrer Reihenfolge -> Sidechain (falls zuletzt) -> Dynamics
+             -> Master -> Limiter -> Ausgang</div>
+<p>Bei einer Add-Stimme wirken Pluck, Motion, Spectron und Capture auf jeden Teilton, während der Synthese: Warp und Mangle kommen dort danach.</p>
+<p>Die Module sind die zehn des Tabs EQ's/Filters (EQ A-D, F1-F4, Warmth, Modal). Jedes geht dorthin, wohin seine Route zeigt, und sie laufen immer in der Reihenfolge ihrer Leiste: Ziehen Sie eine Leistenschaltfläche, um sie zu ändern. Ist Warmth auf All geroutet, läuft Dist ganz oben in der FX-Leiste vor Warmth; weiter unten in der Leiste danach.</p>
+
+<h3>Tipps</h3>
+<ul>
+  <li>Comma ist monophon: Um Akkorde zu spielen, stellen Sie die Verhältnisse ein (oder verwenden Sie die Ratio-Presets oder die Akkordfolge).</li>
+  <li>Eine Empty-Stimme kostet nichts, und eine ausgeschaltete Stufe berechnet nichts. Behalten Sie die CPU-Anzeige im Blick.</li>
+  <li>Abtastrate: 44,1 oder 48 kHz empfohlen, 96 kHz möglich. Die Last folgt der Rate: Bei 192 kHz können die schwersten Presets einen ganzen Kern belegen.</li>
+  <li>Stellen Sie Pegel mit der Anzeige im LUFS-Modus ein (die weiße Linie liegt bei -17), und vergleichen Sie die Effekte mit FX Off.</li>
+</ul>
+</main>
+</div>
+</body>
+</html>
